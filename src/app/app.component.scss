@@ -215,7 +215,6 @@
     }
 
     &__item {
-        background-color: #ffffff;
         text-align: center;
         flex-direction: column;
         justify-content: space-between;
@@ -238,24 +237,20 @@
         min-height: 428px;
     }
 
-    &__item.enamels {
+    .enamels {
         background: url("../assets/enamels.png") no-repeat bottom left ;
-        background-color: #ffffff;
     }
 
-    &__item.materials {
+    .materials {
         background: url("../assets/glue.png") no-repeat bottom right ;
-        background-color: #ffffff;
     }
 
-    &__item.foams {
+    .foams {
         background: url("../assets/foam.png") no-repeat right bottom;
-        background-color: #ffffff;
     }
 
-    &__item.extension {
+    .extension {
         background: url("../assets/extension.png") no-repeat bottom left;
-        background-color: #ffffff;
     }
 
     &__title {
