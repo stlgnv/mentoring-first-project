@@ -4,9 +4,10 @@
             <a href="#" class="header__logo"></a>
             <nav class="header__nav">
                 <a href="#" class="header__link">Главная</a>
-                <a href="#" class="header__link">О компании</a>
-                <a href="#" class="header__link">Каталог</a>
+                <a href="#" class="header__link">{{aboutCompany}}</a>
+                <a href="#" class="header__link">{{headerItem3}}</a>
             </nav>
+            <button type="button" (click)="changeMenuText()">изменить текст</button>
         </div>
         <div class="header__actions">
             <a href="tel:+79650842929" class="header__phone">
@@ -21,12 +22,11 @@
     <div class="container header-secondary-wrapper">
         <div class="header-secondary__nav">
             <button class="header__link_burger"></button>
-            <button class="header__link">Каталог</button>
-            <button class="header__link">Стройматериалы</button>
-            <button class="header__link">Инструменты</button>
-            <button class="header__link">Электрика</button>
-            <button class="header__link">Интерьер и одежда</button>
+            <div class="header-secondary__menu">
+                <div *ngFor="let item of menuItems">{{item}}</div>
+            </div>
         </div>
+
         <div class="search-bar">
             <input type="text" class="search-input" placeholder="Поиск, например Круг зачистной ">
             <button class="search-button">
@@ -39,7 +39,8 @@
         </button>
     </div>
 </header>
-<section class="hero">
+<button (click)='isShowImg = !isShowImg'>скрывать/показывать мужика</button>
+<section class="hero" *ngIf='isShowImg'>
 
 </section>
 <div class="container">
@@ -66,11 +67,7 @@
     <div class="container">
         <div class="categories__header">
             <div class="pagination">
-                <button class="pagination__btn" type="button">1</button>
-                <button class="pagination__btn" type="button">2</button>
-                <button class="pagination__btn" type="button">3</button>
-                <button class="pagination__btn" type="button">4</button>
-                <button class="pagination__btn" type="button">5</button>
+                <button class="pagination__btn" type="button" *ngFor="let item of newPages">{{item}}</button>
             </div>
         </div>
         <div class="categories__grid">
@@ -324,24 +321,19 @@
         <div class="footer__form-section">
             <h2 class="footer__form-title">Остались вопросы?</h2>
             <p class="footer__form-description">
-              Узнавайте первым о скидках, предложениях и событиях еженедельно в своём почтовом ящике. Отпишитесь в любое время одним щелчком мыши.
+                Узнавайте первым о скидках, предложениях и событиях еженедельно в своём почтовом ящике. Отпишитесь в
+                любое время одним щелчком мыши.
             </p>
             <form action="#" method="POST" class="footer__form">
-              <label for="footer-email" class="footer__form-label">
-                <span class="footer__form-icon" aria-hidden="true"></span>
-                <input
-                  type="email"
-                  id="footer-email"
-                  name="email"
-                  placeholder="Введите свою почту"
-                  class="footer__form-input"
-                  required
-                />
-              </label>
-              <button type="submit" class="footer__form-button">Отправить</button>
+                <label for="footer-email" class="footer__form-label">
+                    <span class="footer__form-icon" aria-hidden="true"></span>
+                    <input type="email" id="footer-email" name="email" placeholder="Введите свою почту"
+                        class="footer__form-input" required />
+                </label>
+                <button type="submit" class="footer__form-button">Отправить</button>
             </form>
-          </div>
-          <div class="footer__bottom">
+        </div>
+        <div class="footer__bottom">
             <nav class="footer__nav">
                 <a href="#" class="footer__link">Главная</a>
                 <a href="#" class="footer__link">О компании</a>
@@ -350,13 +342,13 @@
             <div class="footer__socials">
                 <div class="footer__socials-links">
                     <a href="#" class="footer__social-fb"></a>
-                <a href="#" class="footer__social-youtube"></a>
-                <a href="#" class="footer__social-whatsapp"></a>
+                    <a href="#" class="footer__social-youtube"></a>
+                    <a href="#" class="footer__social-whatsapp"></a>
                 </div>
-                
+
                 <p class="footer__copyright">© 2021–2022, EDE</p>
-              </div>
+            </div>
         </div>
     </div>
-    
+
 </footer>

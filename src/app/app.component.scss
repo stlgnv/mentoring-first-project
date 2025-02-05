@@ -75,6 +75,11 @@
     color: #3C3C3B;
     display: flex;
 
+    &__menu {
+        display: flex;
+        gap: 24px;
+    }
+
     &-wrapper {
         display: flex;
         justify-content: space-between;
