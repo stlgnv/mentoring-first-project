@@ -1,0 +1,32 @@
+.container {
+    max-width: 1320px;
+    margin: 0 auto;
+}
+
+.users {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    background-color: #FBFBFB;
+}
+
+.users-list {
+    width: 220px;
+    height: 200px;
+    margin: 5px;
+    background-color: #FFFFFF;
+    box-shadow: 0px 20px 50px 0px rgba(60, 60, 59, 0.0705882353);;
+    color: #3C3C3B;
+}
+
+.users-list p {
+    margin-left: 10px;
+}
+
+.users-list__button {
+    border: 1px #000;
+    padding: 9px;
+    background-color: #0000;
+    border: 3px #F0BA4E solid;
+    border-radius: 54px;
+}

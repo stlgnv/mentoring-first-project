@@ -1,0 +1,159 @@
+.footer {
+    background-color: #4B565E;
+    color: #ffffff;
+    font-size: 14px;
+
+    &__bottom {
+        width: 100%;
+        margin-top: 68px;
+    }
+
+    &__nav {
+        display: flex;
+        gap: 28px;
+    }
+
+    &__socials {
+        display: flex;
+        margin-top: 40px;
+        align-items: center;
+        justify-content: space-between;
+
+        &-links {
+            gap: 22px;
+            display: flex
+        }
+    }
+
+    &__social-fb {
+        background: url("../../../assets/fb_icon.png") no-repeat center;
+        display: inline-block;
+        width: 24px;
+        height: 24px;
+    }
+
+    &__social-youtube {
+        background: url("../../../assets/youtube_icon.png") no-repeat center;
+        display: inline-block;
+        width: 24px;
+        height: 24px;
+    }
+
+    &__social-whatsapp {
+        background: url("../../../assets/whatsapp_icon.png") no-repeat center;
+        display: inline-block;
+        width: 24px;
+        height: 24px;
+    }
+
+    &__copyright {
+        opacity: 60%;
+    }
+
+    &__container {
+        color: #ffffff;
+        padding: 20px;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        width: 100%;
+    }
+
+    &__info {
+        flex: 1;
+        margin: 10px;
+    }
+
+    &__contacts {
+        display: flex;
+        gap: 94px;
+        margin-top: 32px;
+    }
+
+    &__contact {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    &__contact-icon::before {
+        content: "";
+        background: url("../../../assets/Icon_tel.png") no-repeat center;
+        width: 24px;
+        height: 24px;
+        display: inline-block;
+        background-size: cover;
+        margin-right: 9px;
+    }
+
+    &__message-icon::before {
+        content: "";
+        background: url("../../../assets/message.png") no-repeat center;
+        width: 24px;
+        height: 24px;
+        display: inline-block;
+        background-size: cover;
+        margin-right: 8px;    
+    }
+
+    &__contact-link {
+        margin-bottom: 8px;
+        display: inline-block;
+        margin-left: 31px;
+    }
+
+    &__message-icon, 
+    &__contact-icon {
+        font-size: 12px;
+        opacity: 60%;
+    }
+
+    &__form-section {
+        flex: 1;
+        margin: 10px;
+    }
+
+    &__form-title {
+        font-size: 18px;
+    }
+
+    &__form-description {
+        opacity: 60%;
+        line-height: 24px;
+    }
+
+    &__form {
+        border: 1px solid #F0BA4E;
+        border-radius: 30px;
+        padding-top: 16.5px;
+        padding-bottom: 16.5px;
+        padding-left: 24px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        &-input {
+            border: none;
+            background-color: transparent;
+            opacity: 60%;
+            font-size: 12px;
+            color: #ffffff;
+        }
+
+        &-icon {
+            background: url("../../../assets/sms.png") no-repeat center;
+            width: 16px;
+            height: 16px;
+            display: inline-block;
+            margin-right: 8px;
+        }
+
+        &-button {
+            margin-right: 6px;
+            background-color: #F0BA4E;
+            padding: 12px 19.5px;
+            border-radius: 30px;
+            font-size: 10px;
+        }
+    }
+}
