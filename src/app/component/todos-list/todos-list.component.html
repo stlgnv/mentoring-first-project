@@ -1,0 +1,12 @@
+<div class="todo-list container">
+    <h2 class="todo-list__title">КОМПОНЕНТ СПИСКА ЗАДАЧ</h2>
+  
+    <div class="todo-list__items">
+      <div class="todo-list__item" *ngFor="let todo of todos">
+        <app-todo-card
+          [todo]="todo"
+          (deleteTodo)="deleteTodo($event)">
+        </app-todo-card>
+      </div>
+    </div>
+  </div>

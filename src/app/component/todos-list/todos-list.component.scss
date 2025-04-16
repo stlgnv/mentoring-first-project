@@ -1,0 +1,17 @@
+.todo-list {
+    color: #000000;
+    .todo-list__items {
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+        background-color: #FBFBFB;
+        text-align: center;
+        .todo-list__item {
+            width: 22%;
+            margin: 5px;
+            background-color: #FFFFFF;
+            box-shadow: 0px 20px 50px 0px rgba(60, 60, 59, 0.0705882353);
+            color: #3C3C3B;
+        }
+    }
+}
