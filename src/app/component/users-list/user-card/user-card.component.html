@@ -1,5 +1,7 @@
-<p > {{user.name}}</p>
-<p> {{user.email}}</p>
-<p>{{user.website}}</p>
-<p> {{user.company.name}}</p>
-<button class="users-list__button" (click)="onDeleteUser(user.id)">delete user</button>
+<p class="user-info">{{ user.name }}</p>
+<p class="user-info">{{ user.email }}</p>
+<p class="user-info">{{ user.website }}</p>
+<p class="user-info">{{ user.company.name }}</p>
+<button class="users-list__button" (click)="onDeleteUser(user.id)">
+    delete user
+</button>
