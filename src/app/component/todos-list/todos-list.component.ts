@@ -23,12 +23,12 @@ export class TodosListComponent {
   todos: Todo[] = [];
 
   constructor() {
-    this.todosApiService.getTodos().subscribe((response: any) => {
+    this.todosApiService.getTodos().subscribe((response: Todo[]) => {
       this.todos = response;
     });
   }
 
   deleteTodo(id: number) {
-    this.todos = this.todos.filter((todo) => (id === todo.id ? false : true));
+    this.todos = this.todos.filter((todo: Todo) => id === todo.id ? false : true);
   }
 }
