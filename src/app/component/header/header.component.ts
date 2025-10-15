@@ -1,5 +1,5 @@
 import { NgFor, NgIf } from "@angular/common";
-import { Component } from "@angular/core";
+import { ChangeDetectionStrategy, Component } from "@angular/core";
 import { RouterLink } from "@angular/router";
 
 const getMenuItem = (name: string) => {
@@ -23,7 +23,8 @@ const upperCaseMenuItems = menuItems.map(
     standalone: true,
     templateUrl: './header.component.html',
     styleUrl: './header.component.scss',
-    imports: [NgIf,NgFor,RouterLink]
+    imports: [NgIf,NgFor,RouterLink],
+    changeDetection:ChangeDetectionStrategy.OnPush
 })
 
 export class HeaderComponent {
@@ -32,6 +33,8 @@ export class HeaderComponent {
     isShowCatalog = true;
 
     readonly headerItem3 = 'Каталог';
+
+    readonly home = 'Главная';
 
     menuItems:string[] = upperCaseMenuItems;
 

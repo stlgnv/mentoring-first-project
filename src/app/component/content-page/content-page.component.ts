@@ -1,5 +1,5 @@
 import { NgFor, NgIf } from '@angular/common';
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 const newPages:number[] = [5,4,3,2,1];
 
@@ -8,7 +8,8 @@ const newPages:number[] = [5,4,3,2,1];
   standalone: true,
   imports: [NgIf,NgFor],
   templateUrl: './content-page.component.html',
-  styleUrl: './content-page.component.scss'
+  styleUrl: './content-page.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ContentPageComponent {
   isShowImg = true;

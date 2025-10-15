@@ -1,7 +1,6 @@
-import { Component, ViewEncapsulation } from '@angular/core';
-import { RouterLink, RouterOutlet } from '@angular/router';
+import { Component } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './component/header/header.component';
-import { ContentPageComponent } from "./component/content-page/content-page.component";
 import { FooterComponent } from "./component/footer/footer.component";
 
 

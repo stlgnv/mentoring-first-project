@@ -3,12 +3,13 @@
         <div class="header__logo-nav">
             <a href="#" class="header__logo"></a>
             <nav class="header__nav">
-                <a href="#" class="header__link">Главная</a>
+                <a href="#" class="header__link">{{home}}</a>
                 <a href="#" class="header__link">{{aboutCompany}}</a>
                 <a href="#" class="header__link" *ngIf="isShowCatalog">{{headerItem3}}</a>
             </nav>
             <button type="button" (click)="changeMenuText()">изменить текст</button>
-            <button routerLink="users">Пользователи</button>
+            <button [routerLink]="['/users']">Пользователи</button>
+            <button [routerLink]="['/todos']">todos</button>
         </div>
         <div class="header__actions">
             <a href="tel:+79650842929" class="header__phone">
