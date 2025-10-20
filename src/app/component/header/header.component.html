@@ -3,9 +3,9 @@
         <div class="header__logo-nav">
             <a href="#" class="header__logo"></a>
             <nav class="header__nav">
-                <a href="#" class="header__link">{{home}}</a>
-                <a href="#" class="header__link">{{aboutCompany}}</a>
-                <a href="#" class="header__link" *ngIf="isShowCatalog">{{headerItem3}}</a>
+                <a href="#" class="header__link">{{ home }}</a>
+                <a href="#" class="header__link">{{ aboutCompany }}</a>
+                <a href="#" class="header__link" *ngIf="isShowCatalog">{{ headerItem3 }}</a>
             </nav>
             <button type="button" (click)="changeMenuText()">изменить текст</button>
             <button [routerLink]="['/users']">Пользователи</button>
@@ -25,7 +25,7 @@
         <div class="header-secondary__nav">
             <button class="header__link_burger"></button>
             <div class="header-secondary__menu">
-                <button type="button" *ngFor="let item of menuItems">{{item}}</button>
+                <button type="button" *ngFor="let item of menuItems">{{ item }}</button>
             </div>
         </div>
 

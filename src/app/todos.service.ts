@@ -7,11 +7,11 @@ export class TodosService {
     private todoSubject$ = new BehaviorSubject<Todo[]>([]);
     todos$ = this.todoSubject$.asObservable();
     
-    setUsers(todos: Todo[]) {
+    setUsers(todos: Todo[]): void {
         this.todoSubject$.next(todos);
     }
 
-    editTodo(editedTodo: Todo) {
+    editTodo(editedTodo: Todo): void {
         this.todoSubject$.next(
             this.todoSubject$.value.map(
                 todo =>  todo.id === editedTodo.id ? editedTodo : todo
@@ -19,15 +19,15 @@ export class TodosService {
         )
     }
 
-    createTodo(todo: Todo) {
+    createTodo(todo: Todo): void {
         this.todoSubject$.next (
             [...this.todoSubject$.value, todo]
         )
     }
 
-    deleteTodo(id: number) {
-        this.todoSubject$.next (
-            this.todoSubject$.value.filter ((item: Todo) => id === item.id ? false : true)
+    deleteTodo(id: number): void {
+        this.todoSubject$.next(
+            this.todoSubject$.value.filter((item: Todo) => id === item.id ? false : true)
         )
     }
 }

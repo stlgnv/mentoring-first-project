@@ -7,11 +7,11 @@ export class UsersService {
     private userSubject$ = new BehaviorSubject<User[]>([]);
     users$ = this.userSubject$.asObservable();
 
-    setUsers(users: User[]) {
+    setUsers(users: User[]): void {
         this.userSubject$.next(users);
     }
 
-    editUser(editedUser: User) {
+    editUser(editedUser: User): void {
         this.userSubject$.next(
             this.userSubject$.value.map(
                 user => user.id === editedUser.id ? editedUser : user
@@ -19,15 +19,15 @@ export class UsersService {
         )
     }
 
-    createUser(user: User) {
+    createUser(user: User): void {
         this.userSubject$.next(
             [...this.userSubject$.value, user]
         )
     }
 
-    deleteUser(id: number) {
-        this.userSubject$.next (
-            this.userSubject$.value.filter ((item: User) => id === item.id ? false : true)
+    deleteUser(id: number): void {
+        this.userSubject$.next(
+            this.userSubject$.value.filter((item: User) => id === item.id ? false : true)
         )
     }
 }
