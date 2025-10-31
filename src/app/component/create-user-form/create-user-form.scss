@@ -1,0 +1,9 @@
+.user-form {
+    display: flex;
+    flex-direction: column;
+
+    &__button {
+        max-width: 70px;
+        margin-top: 20px;
+    }
+}
