@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from "@angular/core";
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from "@angular/core";
 
 export interface Todo {
     userId: number,
@@ -12,6 +12,7 @@ export interface Todo {
     templateUrl: './todo-card.component.html',
     styleUrl: './todo-card.component.scss',
     standalone: true,
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 
 export class TodoCardComponent {

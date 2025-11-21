@@ -1,34 +1,13 @@
-import { Component, EventEmitter, Input,Output } from "@angular/core";
+import { ChangeDetectionStrategy, Component, EventEmitter, Input,Output } from "@angular/core";
+import { User } from "../users-list.component";
 
-export interface User {
-    id: number;
-    name: string;
-    username: string;
-    email: string;
-    address: {
-      street: string;
-      suite: string;
-      city: string;
-      zipcode: string;
-      geo: {
-        lat: string;
-        lng: string;
-      };
-    };
-    phone: string;
-    website: string;
-    company: {
-      name: string;
-      catchPhrase: string;
-      bs: string;
-    };
-}
 
 @Component({
     selector: 'app-user-card',
     templateUrl: './user-card.component.html',
     styleUrl: './user-card.component.scss',
     standalone: true,
+    changeDetection:ChangeDetectionStrategy.OnPush
 })
 
 export class UserCardComponent {

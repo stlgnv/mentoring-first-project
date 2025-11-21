@@ -20,9 +20,18 @@ export class TodosService {
     }
 
     createTodo(todo: Todo): void {
-        this.todoSubject$.next (
-            [...this.todoSubject$.value, todo]
+        const existingTodo = this.todoSubject$.value.find(
+            (currentElement) => currentElement.title === todo.title
         )
+
+        if(existingTodo !== undefined) {
+            alert('Такой текст уже зарегестрирован');
+        } else {
+            this.todoSubject$.next ([...this.todoSubject$.value, todo]);
+            alert('НОВАЯ ЗАДАЧА ДОБАВЛЕНА')
+        }
+
+        
     }
 
     deleteTodo(id: number): void {

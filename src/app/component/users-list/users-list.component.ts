@@ -9,9 +9,9 @@ import { CreateUserFormComponent } from "../create-user-form/create-user-form.co
 export interface User {
     id: number;
     name: string;
-    username: string;
+    username?: string;
     email: string;
-    address: {
+    address?: {
       street: string;
       suite: string;
       city: string;
@@ -21,14 +21,22 @@ export interface User {
         lng: string;
       };
     };
-    phone: string;
+    phone?: string;
     website: string;
     company: {
       name: string;
-      catchPhrase: string;
-      bs: string;
+      catchPhrase?: string;
+      bs?: string;
     };
 }
+
+export interface CreateUserI {
+    id: number;
+    name: string;
+    email: string;
+    website: string;
+    companyName: string;
+};
 
 @Component({
     selector: 'app-users-list',
@@ -51,7 +59,20 @@ export class UsersListComponent {
         ) 
     }
 
-    deleteUser(id: number) {
+    public deleteUser(id: number) {
         this.usersService.deleteUser(id)
+    }
+
+    public createUser (formData: CreateUserI) {
+       this.usersService.createUser({
+        id: new Date().getTime(),
+        name: formData.name,
+        email: formData.email,
+        website: formData.website,
+        company: {
+            name: formData.companyName,
+        }
+       });
+       
     }
 }
