@@ -1,32 +1,32 @@
 .todo-card {
-    color: #3C3C3B;
-    
-    .todo-card__button {
-        padding: 5px;
-        background-color: #0000;
-        border: 3px #F0BA4E solid;
-        border-radius: 54px;
-        font-size: 13px;        
-    }
-    
-    .todo-card__author {
-        color: #A1A0A0;
-    }
+  color: #3c3c3b;
 
-    .todo-card__text {
-        font-size: 20px;
-    }
+  .todo-card__button {
+    padding: 5px;
+    background-color: #0000;
+    border: 3px #f0ba4e solid;
+    border-radius: 54px;
+    font-size: 13px;
+  }
 
-    .todo-card__title {
-        font-size: 16px;
-    }
+  .todo-card__author {
+    color: #a1a0a0;
+  }
 
-    .todo-card__label {
-        font-size: 14px;
-    }
+  .todo-card__text {
+    font-size: 20px;
+  }
 
-    .todo-card__status {
-        font-size: 15px;
-        margin-bottom: 7px;
-    }
+  .todo-card__title {
+    font-size: 16px;
+  }
+
+  .todo-card__label {
+    font-size: 14px;
+  }
+
+  .todo-card__status {
+    font-size: 15px;
+    margin-bottom: 7px;
+  }
 }

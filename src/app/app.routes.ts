@@ -4,16 +4,16 @@ import { ContentPageComponent } from './component/content-page/content-page.comp
 import { TodosListComponent } from './component/todos-list/todos-list.component';
 
 export const routes: Routes = [
-   {
-      path: 'users',
-      component: UsersListComponent,
-   },
-   {
-      path: '',
-      component: ContentPageComponent,
-   },
-   {
-      path: 'todos',
-      component: TodosListComponent
-   }
+  {
+    path: 'users',
+    component: UsersListComponent,
+  },
+  {
+    path: '',
+    component: ContentPageComponent,
+  },
+  {
+    path: 'todos',
+    component: TodosListComponent,
+  },
 ];
