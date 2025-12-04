@@ -1,45 +1,45 @@
 <div class="container">
-    <form class="user-form" [formGroup]="form" (ngSubmit)="submitForm()">
+    <form class="user-form" [formGroup]="formUser" (ngSubmit)="submitForm()">
         <h1 class="user-form__title">CREATE USER FORM</h1>
 
-        <div class="user-form__field">
-            <p class="user-form__label">NAME:</p>
-            <input class="user-form__input" type="text" formControlName="name" />
-            <div
-                *ngIf="(form.controls['name'].invalid && form.controls['name'].dirty) || form.controls['name'].touched">
-                <div *ngIf="form.controls['name'].errors">ИМЯ ВВЕДЕНО НЕПРАВИЛЬНО</div>
-            </div>
-        </div>
+        <mat-form-field class="user-form__field">
+            <mat-label>NAME:</mat-label>
+            <input matInput type="text" formControlName="name" />
+            <mat-error
+                *ngIf="(formUser.controls['name'].invalid && formUser.dirty) || formUser.controls['name'].touched">
+                Имя введено неправильно
+            </mat-error>
+        </mat-form-field>
 
-        <div class="user-form__field">
-            <p class="user-form__label">EMAIL:</p>
-            <input class="user-form__input" type="text" formControlName="email" />
-            <div
-                *ngIf="(form.controls['email'].invalid && form.controls['email'].dirty) || form.controls['email'].touched">
-                <div *ngIf="form.controls['email'].errors">ЭМАЙЛ ВВЕДЕН НЕПРАВИЛЬНО</div>
-            </div>
-        </div>
+        <mat-form-field class="user-form__field">
+            <mat-label>EMAIL:</mat-label>
+            <input matInput type="text" formControlName="email" />
+            <mat-error
+                *ngIf="(formUser.controls['email'].invalid && formUser.controls['email'].dirty) || formUser.controls['email'].touched">
+                Эмайл введен неправильно
+            </mat-error>
+        </mat-form-field>
 
-        <div class="user-form__field">
-            <p class="user-form__label">WEBSITE:</p>
-            <input class="user-form__input" type="text" formControlName="website" />
-            <div
-                *ngIf="(form.controls['website'].invalid && form.controls['website'].dirty) || form.controls['website'].touched">
-                <div *ngIf="form.controls['website'].errors">ВЕБСАЙТ ВВЕДЕН НЕПРАВИЛЬНО</div>
-            </div>
-        </div>
+        <mat-form-field class="user-form__field">
+            <mat-label>WEBSITE:</mat-label>
+            <input matInput type="text" formControlName="website" />
+            <mat-error
+                *ngIf="(formUser.controls['website'].invalid && formUser.controls['website'].dirty) || formUser.controls['website'].touched">
+                Вебсайт введен неправильно
+            </mat-error>
+        </mat-form-field>
 
-        <div class="user-form__field">
-            <p class="user-form__label">COMPANY NAME:</p>
-            <input class="user-form__input" type="text" formControlName="companyName" />
-            <div
-                *ngIf="(form.controls['companyName'].invalid && form.controls['companyName'].dirty) || form.controls['companyName'].touched">
-                <div *ngIf="form.controls['companyName'].errors">ИМЯ КОМПАНИЙ ВВЕДЕНО НЕПРАВИЛЬНО</div>
-            </div>
-        </div>
+        <mat-form-field class="user-form__field">
+            <mat-label>COMPANY NAME:</mat-label>
+            <input matInput type="text" formControlName="companyName" />
+            <mat-error
+                *ngIf="(formUser.controls['companyName'].invalid && formUser.controls['companyName'].dirty) || formUser.controls['companyName'].touched">
+                Имя компаний введено неправильно
+            </mat-error>
+        </mat-form-field>
 
-        <button class="user-form__button" type="submit" [disabled]="form.invalid">
-            CREATE USER
+        <button class="user-form__button" type="submit" [disabled]="formUser.invalid" mat-raised-button color="primary">
+            + CREATE USER
         </button>
     </form>
 </div>

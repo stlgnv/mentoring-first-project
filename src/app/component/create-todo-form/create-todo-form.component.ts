@@ -1,4 +1,7 @@
 import { NgIf } from '@angular/common';
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -15,7 +18,7 @@ import {
   Validators,
 } from '@angular/forms';
 
-export function completedValidator(): ValidatorFn {
+function completedValidator(): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
     const value = control.value?.trim().toLowerCase();
     if (value === 'да' || value === 'нет') {
@@ -31,7 +34,13 @@ export function completedValidator(): ValidatorFn {
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './create-todo-form.component.html',
-  imports: [ReactiveFormsModule, NgIf],
+  imports: [
+    ReactiveFormsModule,
+    NgIf,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule,
+  ],
 })
 export class CreateTodoFormComponent {
   @Output()

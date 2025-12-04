@@ -2,41 +2,35 @@
     <form class="todo-form" [formGroup]="formTodo" (ngSubmit)="submitForm()">
         <h1 class="todo-form__title">CREATE TODO FORM</h1>
 
-        <div class="todo-form__field">
-            <p class="todo-form__label">ТЕКСТ ЗАДАЧИ:</p>
-            <input class="todo-form__input" type="text" formControlName="title" />
-            <div
+        <mat-form-field class="todo-form__field">
+            <mat-label>Название задачи</mat-label>
+            <input matInput type="text" formControlName="title" />
+            <mat-error
                 *ngIf="(formTodo.controls['title'].invalid && formTodo.controls['title'].dirty) || formTodo.controls['title'].touched">
-                <div *ngIf="formTodo.controls['title'].errors">
-                    ТЕКСТ ЗАДАЧИ ВВЕДЕН НЕПРАВИЛЬНО
-                </div>
-            </div>
-        </div>
+                Название задачи некорректно
+            </mat-error>
+        </mat-form-field>
 
-        <div class="todo-form__field">
-            <p class="todo-form__label">АВТОР ЗАДАЧИ:</p>
-            <input class="todo-form__input" type="text" formControlName="userId" />
-            <div
+        <mat-form-field class="todo-form__field">
+            <mat-label>Автор задачи</mat-label>
+            <input matInput type="text" formControlName="userId" />
+            <mat-error
                 *ngIf="(formTodo.controls['userId'].invalid && formTodo.controls['userId'].dirty) || formTodo.controls['userId'].touched">
-                <div *ngIf="formTodo.controls['userId'].errors">
-                    АВТОР ВВЕДЕН НЕПРАВИЛЬНО (он может состоять только из чисел)
-                </div>
-            </div>
-        </div>
+                Автор задачи некорректен
+            </mat-error>
+        </mat-form-field>
 
-        <div class="todo-form__field">
-            <p class="todo-form__label">ЗАДАЧА ВЫПОЛНЕНА</p>
-            <input class="todo-form__input" type="text" formControlName="completed" />
-            <div
+        <mat-form-field class="todo-form__field">
+            <mat-label>Задача завершена?</mat-label>
+            <input matInput type="text" formControlName="completed" placeholder="Да/Нет" />
+            <mat-error
                 *ngIf="(formTodo.controls['completed'].invalid && formTodo.controls['completed'].dirty) || formTodo.controls['completed'].touched">
-                <div *ngIf="formTodo.controls['completed'].errors">
-                    НЕКОРРЕКТНЫЙ ОТВЕТ
-                </div>
-            </div>
-        </div>
+                ответ некорректен
+            </mat-error>
+        </mat-form-field>
 
-        <button class="todo-form__button" type="submit" [disabled]="formTodo.invalid">
-            CREATE TODO
+        <button class="todo-form__button" type="submit" [disabled]="formTodo.invalid" mat-raised-button color="primary">
+            + CREATE TODO
         </button>
     </form>
 </div>

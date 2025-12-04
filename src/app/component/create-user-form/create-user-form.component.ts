@@ -11,6 +11,9 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 @Component({
   selector: 'app-create-user-form',
@@ -18,13 +21,19 @@ import {
   styleUrl: './create-user-form.component.scss',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [ReactiveFormsModule, NgIf],
+  imports: [
+    ReactiveFormsModule,
+    NgIf,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule,
+  ],
 })
 export class CreateUserFormComponent {
   @Output()
   createUser = new EventEmitter();
 
-  public form = new FormGroup({
+  public formUser = new FormGroup({
     name: new FormControl('', [Validators.required, Validators.minLength(2)]),
     email: new FormControl('', [Validators.required, Validators.email]),
     website: new FormControl('', [
@@ -38,7 +47,7 @@ export class CreateUserFormComponent {
   });
 
   public submitForm(): void {
-    this.createUser.emit(this.form.value);
-    this.form.reset();
+    this.createUser.emit(this.formUser.value);
+    this.formUser.reset();
   }
 }
