@@ -1,9 +1,11 @@
-<app-create-todo-form (createTodo)="createTodo($event)"></app-create-todo-form>
 <div class="todo-list container">
   <div class="todo-list__items">
     <div class="todo-list__item" *ngFor="let todo of todosService.todos$ | async">
-      <app-todo-card [todo]="todo" (deleteTodo)="deleteTodo($event)">
+      <app-todo-card [todo]="todo" (deleteTodo)="deleteTodo($event)" (editTodo)="editTodo($event)">
       </app-todo-card>
     </div>
   </div>
 </div>
+<button mat-mini-fab color='primary' class="button-add" (click)="openCreateTodosDialog()">
+  <mat-icon>add</mat-icon>
+</button>

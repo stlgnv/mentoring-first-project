@@ -1,0 +1,12 @@
+.container {
+  width: 420px;
+  margin: 0 auto;
+  .todo-form {
+    margin: 30px 30px 30px 0px;
+
+    &__field {
+      margin-top: 15px;
+      display: flex;
+    }
+  }
+}

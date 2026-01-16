@@ -3,7 +3,11 @@ import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { TodosApiService } from '../../todos-api.service';
 import { TodoCardComponent } from './todo-card/todo-card.component';
 import { TodosService } from '../../todos.service';
-import { CreateTodoFormComponent } from '../create-todo-form/create-todo-form.component';
+import { MatIcon, MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialog } from '@angular/material/dialog';
+import { CreateTodoDialogComponent } from './create-todo-form/create-todo-dialog.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 export interface Todo {
   userId: number;
@@ -23,16 +27,25 @@ export interface ICreateTodo {
   templateUrl: './todos-list.component.html',
   styleUrl: './todos-list.component.scss',
   standalone: true,
-  imports: [NgFor, TodoCardComponent, AsyncPipe, CreateTodoFormComponent],
+  imports: [
+    NgFor,
+    TodoCardComponent,
+    AsyncPipe,
+    MatIcon,
+    MatIconModule,
+    MatButtonModule,
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TodosListComponent {
   readonly todosApiService = inject(TodosApiService);
   readonly todosService = inject(TodosService);
+  readonly dialog = inject(MatDialog);
+  private snackBar = inject(MatSnackBar);
 
   constructor() {
     this.todosApiService.getTodos().subscribe((response: Todo[]) => {
-      this.todosService.setUsers(response);
+      this.todosService.setTodos(response);
     });
   }
 
@@ -40,12 +53,28 @@ export class TodosListComponent {
     this.todosService.deleteTodo(id);
   }
 
-  public createTodo(formData: ICreateTodo) {
-    this.todosService.createTodo({
-      id: new Date().getTime(),
-      title: formData.title,
-      userId: formData.userId,
-      completed: formData.completed,
+  editTodo(todo: any) {
+    this.todosService.editTodo(todo);
+  }
+
+  openCreateTodosDialog(): void {
+    const dialogRef = this.dialog.open(CreateTodoDialogComponent);
+
+    dialogRef.afterClosed().subscribe((newTodo: ICreateTodo | undefined) => {
+      if (!newTodo) {
+        this.snackBar.open('Отмена добавления!', 'ok', { duration: 3000 });
+        return;
+      }
+
+      const isCreated = this.todosService.createTodo(newTodo);
+
+      if (isCreated) {
+        this.snackBar.open('Задача добавлена', 'ok', { duration: 3000 });
+      } else {
+        this.snackBar.open('Такая задача уже существует', 'ok', {
+          duration: 3000,
+        });
+      }
     });
   }
 }

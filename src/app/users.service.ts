@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { User } from './component/users-list/users-list.component';
+import { IUser, User } from './component/users-list/users-list.component';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
@@ -19,17 +19,16 @@ export class UsersService {
     );
   }
 
-  createUser(user: User): void {
+  createUser(user: IUser): boolean {
     const existingUser = this.userSubject$.value.find(
       (currentElement) => currentElement.email === user.email,
     );
 
-    if (existingUser !== undefined) {
-      alert('Такой эмайл уже зарегестрирован');
-    } else {
-      this.userSubject$.next([...this.userSubject$.value, user]);
-      alert('НОВЫЙ ПОЛЬЗОВАТЕЛЬ УСПЕШНО ДОБАВЛЕН');
+    if (existingUser) {
+      return false;
     }
+    this.userSubject$.next([...this.userSubject$.value, user]);
+    return true;
   }
 
   deleteUser(id: number): void {

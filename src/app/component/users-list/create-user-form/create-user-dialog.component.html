@@ -1,0 +1,51 @@
+<div class="container">
+    <form class="user-form" [formGroup]="formCreateUser">
+        <h1 class="user-form__title">CREATE USER FORM</h1>
+
+        <mat-form-field class="user-form__field">
+            <mat-label>NAME:</mat-label>
+            <input matInput type="text" formControlName="name" />
+            <mat-error
+                *ngIf="(formCreateUser.controls['name'].invalid && formCreateUser.dirty) || formCreateUser.controls['name'].touched">
+                Имя введено неправильно
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="user-form__field">
+            <mat-label>EMAIL:</mat-label>
+            <input matInput type="text" formControlName="email" />
+            <mat-error
+                *ngIf="(formCreateUser.controls['email'].invalid && formCreateUser.controls['email'].dirty) || formCreateUser.controls['email'].touched">
+                Эмайл введен неправильно
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="user-form__field">
+            <mat-label>WEBSITE:</mat-label>
+            <input matInput type="text" formControlName="website" />
+            <mat-error
+                *ngIf="(formCreateUser.controls['website'].invalid && formCreateUser.controls['website'].dirty) || formCreateUser.controls['website'].touched">
+                Вебсайт введен неправильно
+            </mat-error>
+        </mat-form-field>
+
+        <div formGroupName='company'>
+            <mat-form-field class="user-form__field">
+                <mat-label>COMPANY NAME:</mat-label>
+                <input matInput type="text" formControlName="name" />
+                <mat-error
+                    *ngIf="(formCreateUser.controls['company'].invalid && formCreateUser.controls['company'].dirty) || formCreateUser.controls['company'].touched">
+                    Имя компаний введено неправильно
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+        <mat-dialog-actions align="end">
+            <button mat-dialog-close mat-raised-button>Cancel</button>
+            <button class="user-form__button" (click)="submitForm()" [disabled]="formCreateUser.invalid"
+                mat-raised-button color="primary">
+                CREATE USER
+            </button>
+        </mat-dialog-actions>
+    </form>
+</div>

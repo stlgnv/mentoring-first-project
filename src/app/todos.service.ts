@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { Todo } from './component/todos-list/todos-list.component';
+import { ICreateTodo, Todo } from './component/todos-list/todos-list.component';
 
 @Injectable({ providedIn: 'root' })
 export class TodosService {
   private todoSubject$ = new BehaviorSubject<Todo[]>([]);
   todos$ = this.todoSubject$.asObservable();
 
-  setUsers(todos: Todo[]): void {
-    this.todoSubject$.next(todos);
+  setTodos(todos: Todo[]): void {
+    this.todoSubject$.next(todos.slice(0, 10));
   }
 
   editTodo(editedTodo: Todo): void {
@@ -19,24 +19,27 @@ export class TodosService {
     );
   }
 
-  createTodo(todo: Todo): void {
-    const existingTodo = this.todoSubject$.value.find(
-      (currentElement) => currentElement.title === todo.title,
-    );
-
-    if (existingTodo !== undefined) {
-      alert('Такой текст уже зарегестрирован');
-    } else {
-      this.todoSubject$.next([...this.todoSubject$.value, todo]);
-      alert('НОВАЯ ЗАДАЧА ДОБАВЛЕНА');
-    }
-  }
-
   deleteTodo(id: number): void {
     this.todoSubject$.next(
       this.todoSubject$.value.filter((item: Todo) =>
         id === item.id ? false : true,
       ),
     );
+  }
+
+  createTodo(newTodo: ICreateTodo): boolean {
+    const exists = this.todoSubject$.value.some(
+      (t) => t.title === newTodo.title && t.userId === newTodo.userId,
+    );
+
+    if (exists) return false;
+
+    const todoWithId: Todo = {
+      ...newTodo,
+      id: Date.now(),
+    };
+
+    this.todoSubject$.next([...this.todoSubject$.value, todoWithId]);
+    return true;
   }
 }

@@ -1,0 +1,49 @@
+<div class="container">
+    <form class="user-form" [formGroup]="form">
+
+        <mat-form-field class="user-form__field">
+            <mat-label>NAME:</mat-label>
+            <input matInput type="text" formControlName="name" />
+            <mat-error *ngIf="(form.controls['name'].invalid && form.dirty) || form.controls['name'].touched">
+                Имя введено неправильно
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="user-form__field">
+            <mat-label>EMAIL:</mat-label>
+            <input matInput type="text" formControlName="email" />
+            <mat-error
+                *ngIf="(form.controls['email'].invalid && form.controls['email'].dirty) || form.controls['email'].touched">
+                Эмайл введен неправильно
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="user-form__field">
+            <mat-label>WEBSITE:</mat-label>
+            <input matInput type="text" formControlName="website" />
+            <mat-error
+                *ngIf="(form.controls['website'].invalid && form.controls['website'].dirty) || form.controls['website'].touched">
+                Вебсайт введен неправильно
+            </mat-error>
+        </mat-form-field>
+
+        <div formGroupName='company'>
+            <mat-form-field class="user-form__field">
+                <mat-label>COMPANY NAME:</mat-label>
+                <input matInput type="text" formControlName="name" />
+                <mat-error
+                    *ngIf="(form.controls['company'].invalid && form.controls['company'].dirty) || form.controls['company'].touched">
+                    Имя компаний введено неправильно
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+        <mat-dialog-actions align="end">
+            <button mat-dialog-close mat-raised-button>Cancel</button>
+            <button class="user-form__button" [mat-dialog-close]="userWithUpdatedFields" [disabled]="form.invalid"
+                mat-raised-button color="primary">
+                EDIT USER
+            </button>
+        </mat-dialog-actions>
+    </form>
+</div>

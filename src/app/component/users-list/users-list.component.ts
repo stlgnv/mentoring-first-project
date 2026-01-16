@@ -3,7 +3,11 @@ import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { UserCardComponent } from './user-card/user-card.component';
 import { UsersApiService } from '../../users-api.service';
 import { UsersService } from '../../users.service';
-import { CreateUserFormComponent } from '../create-user-form/create-user-form.component';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialog } from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
+import { CreateUserDialogComponent } from './create-user-form/create-user-dialog.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 export interface User {
   id: number;
@@ -30,11 +34,16 @@ export interface User {
 }
 
 export interface ICreateUser {
-  id: number;
   name: string;
   email: string;
   website: string;
-  companyName: string;
+  company: {
+    name: string;
+  };
+}
+
+export interface IUser extends ICreateUser {
+  id: number;
 }
 
 @Component({
@@ -42,12 +51,20 @@ export interface ICreateUser {
   templateUrl: './users-list.component.html',
   styleUrl: './users-list.component.scss',
   standalone: true,
-  imports: [NgFor, UserCardComponent, AsyncPipe, CreateUserFormComponent],
+  imports: [
+    NgFor,
+    UserCardComponent,
+    AsyncPipe,
+    MatButtonModule,
+    MatIconModule,
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UsersListComponent {
   readonly usersApiService = inject(UsersApiService);
   readonly usersService = inject(UsersService);
+  readonly dialog = inject(MatDialog);
+  private snackBar = inject(MatSnackBar);
 
   constructor() {
     this.usersApiService.getUsers().subscribe((response: User[]) => {
@@ -59,15 +76,39 @@ export class UsersListComponent {
     this.usersService.deleteUser(id);
   }
 
-  public createUser(formData: ICreateUser) {
-    this.usersService.createUser({
-      id: new Date().getTime(),
-      name: formData.name,
-      email: formData.email,
-      website: formData.website,
-      company: {
-        name: formData.companyName,
-      },
+  public editUser(formDialogValue: IUser) {
+    this.usersService.editUser({
+      ...formDialogValue,
+    });
+  }
+
+  public createUser(user: IUser): void {
+    const newUser: IUser = {
+      ...user,
+    };
+    this.usersService.createUser(newUser);
+  }
+
+  openCreateUserDialog(): void {
+    const dialogRef = this.dialog.open(CreateUserDialogComponent, {
+      data: {},
+    });
+
+    dialogRef.afterClosed().subscribe((newUser: IUser | undefined) => {
+      if (!newUser) {
+        this.snackBar.open('Отмена добавления!', 'ok', { duration: 3000 });
+        return;
+      }
+      const isCreated = this.usersService.createUser(newUser);
+      if (isCreated) {
+        this.snackBar.open('Пользователь добавлен!', 'ok', {
+          duration: 3000,
+        });
+      } else {
+        this.snackBar.open('Такой email уже зарегистрирован', 'ok', {
+          duration: 3000,
+        });
+      }
     });
   }
 }
