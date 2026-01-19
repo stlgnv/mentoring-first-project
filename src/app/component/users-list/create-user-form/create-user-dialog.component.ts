@@ -39,7 +39,7 @@ export class CreateUserDialogComponent {
     MatDialogRef<CreateUserDialogComponent, ICreateUser>,
   );
 
-  public readonly formCreateUser = new FormGroup({
+  public readonly userForm = new FormGroup({
     name: new FormControl('', {
       nonNullable: true,
       validators: [Validators.required, Validators.minLength(2)],
@@ -61,7 +61,7 @@ export class CreateUserDialogComponent {
   });
 
   public submitForm(): void {
-    if (this.formCreateUser.invalid) return;
-    this.dialogRef.close(this.formCreateUser.getRawValue() as ICreateUser);
+    if (this.userForm.invalid) return;
+    this.dialogRef.close(this.userForm.getRawValue() as ICreateUser);
   }
 }

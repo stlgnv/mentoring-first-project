@@ -1,12 +1,11 @@
 <div class="container">
-    <form class="todo-form" [formGroup]="formCreateTodo">
+    <form class="todo-form" [formGroup]="todoForm">
         <h1 class="todo-form__title">CREATE TODO FORM</h1>
 
         <mat-form-field class="todo-form__field">
             <mat-label>Название задачи</mat-label>
             <input matInput type="text" formControlName="title" />
-            <mat-error
-                *ngIf="(formCreateTodo.controls['title'].invalid && formCreateTodo.controls['title'].dirty) || formCreateTodo.controls['title'].touched">
+            <mat-error>
                 Название задачи некорректно
             </mat-error>
         </mat-form-field>
@@ -14,8 +13,7 @@
         <mat-form-field class="todo-form__field">
             <mat-label>Автор задачи</mat-label>
             <input matInput type="text" formControlName="userId" />
-            <mat-error
-                *ngIf="(formCreateTodo.controls['userId'].invalid && formCreateTodo.controls['userId'].dirty) || formCreateTodo.controls['userId'].touched">
+            <mat-error>
                 Автор задачи некорректен
             </mat-error>
         </mat-form-field>
@@ -23,15 +21,14 @@
         <mat-form-field class="todo-form__field">
             <mat-label>Задача завершена?</mat-label>
             <input matInput type="text" formControlName="completed" placeholder="Да/Нет" />
-            <mat-error
-                *ngIf="(formCreateTodo.controls['completed'].invalid && formCreateTodo.controls['completed'].dirty) || formCreateTodo.controls['completed'].touched">
+            <mat-error>
                 ответ некорректен
             </mat-error>
         </mat-form-field>
 
         <mat-dialog-actions align="end">
             <button type="button" mat-dialog-close mat-raised-button>Cancel</button>
-            <button class="todo-form__button" type="button" (click)="submitForm()" [disabled]="formCreateTodo.invalid"
+            <button class="todo-form__button" type="button" (click)="submitForm()" [disabled]="todoForm.invalid"
                 mat-raised-button color="primary">
                 CREATE TODO
             </button>

@@ -1,12 +1,11 @@
 <div class="container">
-    <form class="user-form" [formGroup]="formCreateUser">
+    <form class="user-form" [formGroup]="userForm">
         <h1 class="user-form__title">CREATE USER FORM</h1>
 
         <mat-form-field class="user-form__field">
             <mat-label>NAME:</mat-label>
             <input matInput type="text" formControlName="name" />
-            <mat-error
-                *ngIf="(formCreateUser.controls['name'].invalid && formCreateUser.dirty) || formCreateUser.controls['name'].touched">
+            <mat-error>
                 Имя введено неправильно
             </mat-error>
         </mat-form-field>
@@ -14,8 +13,7 @@
         <mat-form-field class="user-form__field">
             <mat-label>EMAIL:</mat-label>
             <input matInput type="text" formControlName="email" />
-            <mat-error
-                *ngIf="(formCreateUser.controls['email'].invalid && formCreateUser.controls['email'].dirty) || formCreateUser.controls['email'].touched">
+            <mat-error>
                 Эмайл введен неправильно
             </mat-error>
         </mat-form-field>
@@ -23,8 +21,7 @@
         <mat-form-field class="user-form__field">
             <mat-label>WEBSITE:</mat-label>
             <input matInput type="text" formControlName="website" />
-            <mat-error
-                *ngIf="(formCreateUser.controls['website'].invalid && formCreateUser.controls['website'].dirty) || formCreateUser.controls['website'].touched">
+            <mat-error>
                 Вебсайт введен неправильно
             </mat-error>
         </mat-form-field>
@@ -33,8 +30,7 @@
             <mat-form-field class="user-form__field">
                 <mat-label>COMPANY NAME:</mat-label>
                 <input matInput type="text" formControlName="name" />
-                <mat-error
-                    *ngIf="(formCreateUser.controls['company'].invalid && formCreateUser.controls['company'].dirty) || formCreateUser.controls['company'].touched">
+                <mat-error>
                     Имя компаний введено неправильно
                 </mat-error>
             </mat-form-field>
@@ -42,8 +38,8 @@
 
         <mat-dialog-actions align="end">
             <button mat-dialog-close mat-raised-button>Cancel</button>
-            <button class="user-form__button" (click)="submitForm()" [disabled]="formCreateUser.invalid"
-                mat-raised-button color="primary">
+            <button class="user-form__button" (click)="submitForm()" [disabled]="userForm.invalid" mat-raised-button
+                color="primary">
                 CREATE USER
             </button>
         </mat-dialog-actions>

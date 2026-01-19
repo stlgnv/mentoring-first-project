@@ -40,35 +40,30 @@ function completedValidator(): ValidatorFn {
   ],
 })
 export class CreateTodoDialogComponent {
-  private dialogRef = inject(
-    MatDialogRef<CreateTodoDialogComponent, ICreateTodo>,
-  );
+  private dialogRef = inject(MatDialogRef<CreateTodoDialogComponent>);
   private readonly fb = inject(FormBuilder);
-  public readonly formCreateTodo = this.fb.group({
+  public readonly todoForm = this.fb.group({
     title: ['', [Validators.required, Validators.minLength(4)]],
     userId: ['', [Validators.required, Validators.pattern(/^\d+$/)]],
     completed: ['', [Validators.required, completedValidator()]],
   });
 
   private getCompletedValue(): boolean {
-    const value = this.formCreateTodo
-      .get('completed')
-      ?.value!.trim()
-      .toLowerCase();
+    const value = this.todoForm.get('completed')?.value!.trim().toLowerCase();
     if (value === 'да') return true;
     else return false;
   }
 
   get todoToCreate(): ICreateTodo {
     return {
-      title: this.formCreateTodo.controls.title.value!,
-      userId: Number(this.formCreateTodo.controls.userId.value),
+      title: this.todoForm.controls.title.value!,
+      userId: Number(this.todoForm.controls.userId.value),
       completed: this.getCompletedValue(),
     };
   }
 
   public submitForm(): void {
-    if (this.formCreateTodo.invalid) return;
+    if (this.todoForm.invalid) return;
     this.dialogRef.close(this.todoToCreate);
   }
 }

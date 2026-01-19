@@ -5,8 +5,7 @@
         <mat-form-field class="todo-form__field">
             <mat-label>Название задачи</mat-label>
             <input matInput type="text" formControlName="title" />
-            <mat-error
-                *ngIf="(formTodo.controls['title'].invalid && formTodo.controls['title'].dirty) || formTodo.controls['title'].touched">
+            <mat-error>
                 Название задачи некорректно
             </mat-error>
         </mat-form-field>
@@ -14,8 +13,7 @@
         <mat-form-field class="todo-form__field">
             <mat-label>Автор задачи</mat-label>
             <input matInput type="text" formControlName="userId" />
-            <mat-error
-                *ngIf="(formTodo.controls['userId'].invalid && formTodo.controls['userId'].dirty) || formTodo.controls['userId'].touched">
+            <mat-error>
                 Автор задачи некорректен
             </mat-error>
         </mat-form-field>
@@ -23,8 +21,7 @@
         <mat-form-field class="todo-form__field">
             <mat-label>Задача завершена?</mat-label>
             <input matInput type="text" formControlName="completed" placeholder="Да/Нет" />
-            <mat-error
-                *ngIf="(formTodo.controls['completed'].invalid && formTodo.controls['completed'].dirty) || formTodo.controls['completed'].touched">
+            <mat-error>
                 ответ некорректен
             </mat-error>
         </mat-form-field>
