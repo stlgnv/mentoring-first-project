@@ -1,6 +1,6 @@
 <div class="todo-card">
   <p class="todo-card__text">НАЗВАНИЕ ЗАДАЧИ:</p>
-  <div class="todo-card__title">{{ todo.title }}</div>
+  <div class="todo-card__title">{{ todo.title | limitTitle}}</div>
 
   <p class="todo-card__author">АВТОР ЗАДАЧИ:</p>
   <div class="todo-card__id">ID: {{ todo.userId }}</div>

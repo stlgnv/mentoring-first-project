@@ -1,4 +1,4 @@
-import { NgFor, NgIf } from '@angular/common';
+import { DatePipe, NgFor, NgIf } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
@@ -27,10 +27,12 @@ const upperCaseMenuItems = menuItems.map((item) => {
   standalone: true,
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
-  imports: [NgIf, NgFor, RouterLink],
+  imports: [NgIf, NgFor, RouterLink, DatePipe],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeaderComponent {
+  today = new Date();
+
   aboutCompany = vuzov;
 
   isShowCatalog = true;

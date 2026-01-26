@@ -1,4 +1,3 @@
-import { NgIf } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import {
   FormControl,
@@ -24,7 +23,6 @@ import { IUser } from '../users-list.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     ReactiveFormsModule,
-    NgIf,
     MatFormField,
     MatLabel,
     MatError,
@@ -34,29 +32,39 @@ import { IUser } from '../users-list.component';
     MatDialogActions,
   ],
 })
+
 export class EditUserDialogComponent {
   readonly data = inject<{ user: IUser }>(MAT_DIALOG_DATA);
 
   public form = new FormGroup({
+  name: new FormControl('', {
+    nonNullable: true,
+    validators: [Validators.required, Validators.minLength(2)],
+  }),
+
+  email: new FormControl('', {
+    nonNullable: true,
+    validators: [Validators.required, Validators.email],
+  }),
+
+  website: new FormControl('', {
+    nonNullable: true,
+    validators: [Validators.required, Validators.minLength(3)],
+  }),
+
+  company: new FormGroup({
     name: new FormControl('', {
       nonNullable: true,
       validators: [Validators.required, Validators.minLength(2)],
     }),
-    email: new FormControl('', {
-      nonNullable: true,
-      validators: [Validators.required, Validators.email],
-    }),
-    website: new FormControl('', {
-      nonNullable: true,
-      validators: [Validators.required, Validators.minLength(3)],
-    }),
-    company: new FormGroup({
-      name: new FormControl('', {
-        nonNullable: true,
-        validators: [Validators.required, Validators.minLength(2)],
-      }),
-    }),
-  });
+
+  }),
+  phone: new FormControl('', {
+    nonNullable: true,
+    validators: [Validators.required, Validators.minLength(3),Validators.pattern(/^\d+$/)],
+  }),
+
+});
 
   get userWithUpdatedFields() {
     return {

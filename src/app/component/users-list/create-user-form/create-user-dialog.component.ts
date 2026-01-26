@@ -1,4 +1,3 @@
-import { NgIf } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import {
   FormControl,
@@ -25,7 +24,6 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     ReactiveFormsModule,
-    NgIf,
     MatButtonModule,
     MatFormFieldModule,
     MatInputModule,
@@ -47,6 +45,10 @@ export class CreateUserDialogComponent {
     email: new FormControl('', {
       nonNullable: true,
       validators: [Validators.required, Validators.email],
+    }),
+    phone: new FormControl('', {
+      nonNullable: true,
+      validators: [Validators.required, Validators.minLength(8), Validators.pattern(/^\d+$/),],
     }),
     website: new FormControl('', {
       nonNullable: true,

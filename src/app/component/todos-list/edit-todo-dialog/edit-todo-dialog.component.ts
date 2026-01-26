@@ -13,7 +13,6 @@ import {
   Validators,
 } from '@angular/forms';
 import { Todo } from '../todos-list.component';
-import { NgIf } from '@angular/common';
 import { MatError, MatFormField, MatLabel } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
@@ -36,7 +35,6 @@ function completedValidator(): ValidatorFn {
   styleUrl: './edit-todo-dialog.component.scss',
   imports: [
     ReactiveFormsModule,
-    NgIf,
     MatFormField,
     MatLabel,
     MatError,
@@ -48,10 +46,6 @@ function completedValidator(): ValidatorFn {
 })
 export class EditTodoDialogComponent {
   readonly data = inject<{ todo: Todo }>(MAT_DIALOG_DATA);
-
-  constructor() {
-    console.log(this.data);
-  }
 
   private getCompletedValue(): boolean {
     const value = this.formTodo.get('completed')?.value!.trim().toLowerCase();
@@ -82,6 +76,7 @@ export class EditTodoDialogComponent {
       completed: this.getCompletedValue(),
     };
   }
+
   ngOnInit(): void {
     this.formTodo.patchValue({
       ...this.data.todo,

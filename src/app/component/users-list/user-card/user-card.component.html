@@ -1,6 +1,7 @@
-<p class="user-info">{{ user.name }}</p>
-<p class="user-info">{{ user.email }}</p>
-<p class="user-info">{{ user.website }}</p>
-<p class="user-info">{{ user.company.name }}</p>
+<p class="user-info">{{ user.name | customUpperCase}}</p>
+<p class="user-info">{{ user.email | customUpperCase}}</p>
+<p class="user-info">{{ user.phone | removeDashes}}</p>
+<p class="user-info">{{ user.website | customUpperCase}}</p>
+<p class="user-info">{{ user.company.name | customUpperCase}}</p>
 <button class="users-list__button" (click)="openDeleteDialog()">DELETE USER</button>
 <button class="users-list__button" (click)="openDialog()">EDIT USER</button>

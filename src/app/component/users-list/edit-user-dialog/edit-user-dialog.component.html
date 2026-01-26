@@ -18,6 +18,14 @@
         </mat-form-field>
 
         <mat-form-field class="user-form__field">
+    <mat-label>PHONE</mat-label>
+    <input matInput type="text" formControlName="phone" />
+    <mat-error>
+        Телефон введён неправильно
+    </mat-error>
+    </mat-form-field>
+
+        <mat-form-field class="user-form__field">
             <mat-label>WEBSITE:</mat-label>
             <input matInput type="text" formControlName="website" />
             <mat-error>
@@ -34,7 +42,7 @@
                 </mat-error>
             </mat-form-field>
         </div>
-
+        
         <mat-dialog-actions align="end">
             <button mat-dialog-close mat-raised-button>Cancel</button>
             <button class="user-form__button" [mat-dialog-close]="userWithUpdatedFields" [disabled]="form.invalid"

@@ -24,7 +24,7 @@ export interface User {
       lng: string;
     };
   };
-  phone?: string;
+  phone: string;
   website: string;
   company: {
     name: string;
@@ -36,6 +36,7 @@ export interface User {
 export interface ICreateUser {
   name: string;
   email: string;
+  phone: string;
   website: string;
   company: {
     name: string;
@@ -60,6 +61,7 @@ export interface IUser extends ICreateUser {
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
+
 export class UsersListComponent {
   readonly usersApiService = inject(UsersApiService);
   readonly usersService = inject(UsersService);
