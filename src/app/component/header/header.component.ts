@@ -30,8 +30,9 @@ const upperCaseMenuItems = menuItems.map((item) => {
   imports: [NgIf, NgFor, RouterLink, DatePipe],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
+
 export class HeaderComponent {
-  today = new Date();
+  today: Date = new Date();
 
   aboutCompany = vuzov;
 

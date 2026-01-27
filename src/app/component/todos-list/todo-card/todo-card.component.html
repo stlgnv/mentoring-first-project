@@ -1,13 +1,10 @@
 <div class="todo-card">
   <p class="todo-card__text">НАЗВАНИЕ ЗАДАЧИ:</p>
-  <div class="todo-card__title">{{ todo.title | limitTitle}}</div>
-
+  <div class="todo-card__title">{{ todo.title | limitTitle }}</div>
   <p class="todo-card__author">АВТОР ЗАДАЧИ:</p>
   <div class="todo-card__id">ID: {{ todo.userId }}</div>
-
   <p class="todo-card__label">ЗАДАЧА ЗАВЕРШЕНА?:</p>
   <div class="todo-card__status">{{ todo.completed ? 'ДА' : 'НЕТ' }}</div>
-
   <button class="todo-card__button" (click)="openDeleteDialog()">УДАЛИТЬ ЗАДАЧУ</button>
   <button class="todo-card__button" (click)="openDialog()">РЕДАКТИРОВАТЬ ЗАДАЧУ</button>
 </div>
