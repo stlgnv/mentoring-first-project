@@ -14,6 +14,8 @@ import { DeleteUserDialogComponent } from '../delete-user-dialog/delete-user-dia
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { RemoveDashesPipe } from '../../../pipes/remove-daches.pipe';
 import { UpperCasePipe } from '@angular/common';
+import { CartHoverDirective } from '../../../directives/cart-hover.directive';
+import { MatTooltip } from '@angular/material/tooltip';
 
 @Component({
   selector: 'app-user-card',
@@ -21,9 +23,15 @@ import { UpperCasePipe } from '@angular/common';
   styleUrl: './user-card.component.scss',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [MatDialogModule, MatSnackBarModule, RemoveDashesPipe, UpperCasePipe],
+  imports: [
+    MatDialogModule,
+    MatSnackBarModule,
+    RemoveDashesPipe,
+    UpperCasePipe,
+    CartHoverDirective,
+    MatTooltip,
+  ],
 })
-
 export class UserCardComponent {
   @Input() user!: User;
 

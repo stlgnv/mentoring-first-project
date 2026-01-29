@@ -5,6 +5,8 @@
   <div class="todo-card__id">ID: {{ todo.userId }}</div>
   <p class="todo-card__label">ЗАДАЧА ЗАВЕРШЕНА?:</p>
   <div class="todo-card__status">{{ todo.completed ? 'ДА' : 'НЕТ' }}</div>
-  <button class="todo-card__button" (click)="openDeleteDialog()">УДАЛИТЬ ЗАДАЧУ</button>
-  <button class="todo-card__button" (click)="openDialog()">РЕДАКТИРОВАТЬ ЗАДАЧУ</button>
+  <button class="todo-card__button" (click)="openDeleteDialog()" matTooltip="Навсегда удалить задачу">УДАЛИТЬ
+    ЗАДАЧУ</button>
+  <button class="todo-card__button" (click)="openDialog()" matTooltip="Редактировать данные задачи">РЕДАКТИРОВАТЬ
+    ЗАДАЧУ</button>
 </div>

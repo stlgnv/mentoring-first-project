@@ -1,8 +1,10 @@
 <div class="users container">
     <div class="users-list" *ngFor="let user of usersService.users$ | async">
-        <app-user-card [user]="user" (deleteUser)="deleteUser($event)" (editUser)="editUser($event)"></app-user-card>
+        <app-user-card [user]="user" (deleteUser)="deleteUser($event)" (editUser)="editUser($event)"
+            cartShadow></app-user-card>
     </div>
 </div>
-<button mat-mini-fab color='primary' class="button-add" (click)="openCreateUserDialog()">
+<button mat-mini-fab color='primary' class="button-add" (click)="openCreateUserDialog()"
+    matTooltip="Добавить пользователя">
     <mat-icon>add</mat-icon>
 </button>

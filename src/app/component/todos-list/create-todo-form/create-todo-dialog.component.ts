@@ -12,6 +12,7 @@ import {
 } from '@angular/forms';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { ICreateTodo } from '../todos-list.component';
+import { MatTooltip } from '@angular/material/tooltip';
 
 function completedValidator(): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
@@ -35,6 +36,7 @@ function completedValidator(): ValidatorFn {
     MatFormFieldModule,
     MatInputModule,
     MatDialogModule,
+    MatTooltip,
   ],
 })
 export class CreateTodoDialogComponent {

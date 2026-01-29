@@ -15,6 +15,7 @@ import {
   MatDialogClose,
   MatDialogRef,
 } from '@angular/material/dialog';
+import { MatTooltip } from '@angular/material/tooltip';
 
 @Component({
   selector: 'app-create-user-form',
@@ -29,6 +30,7 @@ import {
     MatInputModule,
     MatDialogActions,
     MatDialogClose,
+    MatTooltip,
   ],
 })
 export class CreateUserDialogComponent {
@@ -48,7 +50,11 @@ export class CreateUserDialogComponent {
     }),
     phone: new FormControl('', {
       nonNullable: true,
-      validators: [Validators.required, Validators.minLength(8), Validators.pattern(/^\d+$/),],
+      validators: [
+        Validators.required,
+        Validators.minLength(8),
+        Validators.pattern(/^\d+$/),
+      ],
     }),
     website: new FormControl('', {
       nonNullable: true,

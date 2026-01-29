@@ -8,6 +8,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { CreateUserDialogComponent } from './create-user-form/create-user-dialog.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { CartShadowDirective } from '../../directives/cart-shadow.directive';
+import { MatTooltip } from '@angular/material/tooltip';
 
 export interface User {
   id: number;
@@ -58,10 +60,11 @@ export interface IUser extends ICreateUser {
     AsyncPipe,
     MatButtonModule,
     MatIconModule,
+    CartShadowDirective,
+    MatTooltip,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-
 export class UsersListComponent {
   readonly usersApiService = inject(UsersApiService);
   readonly usersService = inject(UsersService);

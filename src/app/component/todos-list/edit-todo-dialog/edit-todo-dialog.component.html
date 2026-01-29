@@ -1,7 +1,5 @@
 <div class="container">
     <form class="todo-form" [formGroup]="formTodo">
-        <h1 class="todo-form__title">CREATE TODO FORM</h1>
-
         <mat-form-field class="todo-form__field">
             <mat-label>Название задачи</mat-label>
             <input matInput type="text" formControlName="title" />
@@ -26,9 +24,9 @@
             </mat-error>
         </mat-form-field>
         <mat-dialog-actions align="end">
-            <button mat-dialog-close mat-raised-button>Cancel</button>
+            <button mat-dialog-close mat-raised-button matTooltip="Отменить">Cancel</button>
             <button class="todo-form__button" type="submit" [disabled]="formTodo.invalid" mat-raised-button
-                color="primary" [mat-dialog-close]="todoWithUpdatedFields">
+                color="primary" [mat-dialog-close]="todoWithUpdatedFields" matTooltip="Сохранить изменения">
                 EDIT TODO
             </button>
         </mat-dialog-actions>

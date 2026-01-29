@@ -14,6 +14,7 @@ import {
 import { MatFormField, MatLabel, MatError } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { IUser } from '../users-list.component';
+import { MatTooltip } from '@angular/material/tooltip';
 
 @Component({
   standalone: true,
@@ -30,41 +31,43 @@ import { IUser } from '../users-list.component';
     MatButtonModule,
     MatDialogClose,
     MatDialogActions,
+    MatTooltip,
   ],
 })
-
 export class EditUserDialogComponent {
   readonly data = inject<{ user: IUser }>(MAT_DIALOG_DATA);
 
   public form = new FormGroup({
-  name: new FormControl('', {
-    nonNullable: true,
-    validators: [Validators.required, Validators.minLength(2)],
-  }),
-
-  email: new FormControl('', {
-    nonNullable: true,
-    validators: [Validators.required, Validators.email],
-  }),
-
-  website: new FormControl('', {
-    nonNullable: true,
-    validators: [Validators.required, Validators.minLength(3)],
-  }),
-
-  company: new FormGroup({
     name: new FormControl('', {
       nonNullable: true,
       validators: [Validators.required, Validators.minLength(2)],
     }),
 
-  }),
-  phone: new FormControl('', {
-    nonNullable: true,
-    validators: [Validators.required, Validators.minLength(3),Validators.pattern(/^\d+$/)],
-  }),
+    email: new FormControl('', {
+      nonNullable: true,
+      validators: [Validators.required, Validators.email],
+    }),
 
-});
+    website: new FormControl('', {
+      nonNullable: true,
+      validators: [Validators.required, Validators.minLength(3)],
+    }),
+
+    company: new FormGroup({
+      name: new FormControl('', {
+        nonNullable: true,
+        validators: [Validators.required, Validators.minLength(2)],
+      }),
+    }),
+    phone: new FormControl('', {
+      nonNullable: true,
+      validators: [
+        Validators.required,
+        Validators.minLength(3),
+        Validators.pattern(/^\d+$/),
+      ],
+    }),
+  });
 
   get userWithUpdatedFields() {
     return {

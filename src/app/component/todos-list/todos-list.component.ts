@@ -8,6 +8,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialog } from '@angular/material/dialog';
 import { CreateTodoDialogComponent } from './create-todo-form/create-todo-dialog.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatTooltip } from '@angular/material/tooltip';
 
 export interface Todo {
   userId: number;
@@ -34,6 +35,7 @@ export interface ICreateTodo {
     MatIcon,
     MatIconModule,
     MatButtonModule,
+    MatTooltip,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

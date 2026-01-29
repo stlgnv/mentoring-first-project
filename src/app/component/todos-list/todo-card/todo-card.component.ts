@@ -11,6 +11,7 @@ import { EditTodoDialogComponent } from '../edit-todo-dialog/edit-todo-dialog.co
 import { DeleteTodoDialogComponent } from '../delete-todo-dialog/delete-todo-dialog.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { LimitTitlePipe } from '../../../pipes/limit-title.pipe';
+import { MatTooltip } from '@angular/material/tooltip';
 
 export interface Todo {
   userId: number;
@@ -25,7 +26,7 @@ export interface Todo {
   styleUrl: './todo-card.component.scss',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [LimitTitlePipe],
+  imports: [LimitTitlePipe, MatTooltip],
 })
 export class TodoCardComponent {
   @Input() todo!: Todo;

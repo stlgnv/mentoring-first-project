@@ -9,6 +9,7 @@ import {
   MatDialogTitle,
 } from '@angular/material/dialog';
 import { ICreateTodo } from '../todos-list.component';
+import { MatTooltip } from '@angular/material/tooltip';
 
 @Component({
   selector: 'app-delete-todo-dialog',
@@ -19,6 +20,7 @@ import { ICreateTodo } from '../todos-list.component';
     MatDialogActions,
     MatDialogClose,
     MatButtonModule,
+    MatTooltip,
   ],
   templateUrl: './delete-todo-dialog.component.html',
   styleUrl: './delete-todo-dialog.component.scss',

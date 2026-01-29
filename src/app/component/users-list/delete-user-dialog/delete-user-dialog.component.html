@@ -2,6 +2,7 @@
     <h2 mat-dialog-title>Delete user: {{ this.data.user.name }}</h2>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
-    <button mat-dialog-close mat-raised-button>Cancel</button>
-    <button matButton cdkFocusInitial mat-raised-button color="primary" [mat-dialog-close]="true">Delete</button>
+    <button mat-dialog-close mat-raised-button matTooltip="Отмена удаления">Cancel</button>
+    <button matButton cdkFocusInitial mat-raised-button color="primary" matTooltip="Удалить пользователя навсегда"
+        [mat-dialog-close]="true">Delete</button>
 </mat-dialog-actions>

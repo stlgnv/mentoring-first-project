@@ -16,6 +16,7 @@ import { Todo } from '../todos-list.component';
 import { MatError, MatFormField, MatLabel } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { MatTooltip } from '@angular/material/tooltip';
 
 function completedValidator(): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
@@ -42,6 +43,7 @@ function completedValidator(): ValidatorFn {
     MatButtonModule,
     MatDialogClose,
     MatDialogActions,
+    MatTooltip,
   ],
 })
 export class EditTodoDialogComponent {

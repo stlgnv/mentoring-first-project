@@ -1,6 +1,7 @@
 import { DatePipe, NgFor, NgIf } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { CartHoverDirective } from '../../directives/cart-hover.directive';
 
 const getMenuItem = (name: string) => {
   return name;
@@ -27,10 +28,9 @@ const upperCaseMenuItems = menuItems.map((item) => {
   standalone: true,
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
-  imports: [NgIf, NgFor, RouterLink, DatePipe],
+  imports: [NgIf, NgFor, RouterLink, DatePipe, CartHoverDirective],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-
 export class HeaderComponent {
   today: Date = new Date();
 
