@@ -1,8 +1,16 @@
 <mat-dialog-content>
-    <h2 mat-dialog-title>Delete todo: {{ this.data.todo.title }}</h2>
+  <h2 mat-dialog-title>Delete todo: {{ this.data.todo.title }}</h2>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
-    <button mat-dialog-close mat-raised-button matTooltip="Отмена">Cancel</button>
-    <button matButton cdkFocusInitial mat-raised-button color="primary" [mat-dialog-close]="true"
-        matTooltip="Удалить навсегда">Delete</button>
+  <button mat-dialog-close mat-raised-button matTooltip="Отмена">Cancel</button>
+  <button
+    matButton
+    cdkFocusInitial
+    mat-raised-button
+    color="primary"
+    [mat-dialog-close]="true"
+    matTooltip="Удалить навсегда"
+  >
+    Delete
+  </button>
 </mat-dialog-actions>

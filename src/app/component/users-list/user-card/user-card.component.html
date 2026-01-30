@@ -3,7 +3,19 @@
 <p class="user-info">{{ user.phone | removeDashes }}</p>
 <p class="user-info">{{ user.website | uppercase }}</p>
 <p class="user-info">{{ user.company.name | uppercase }}</p>
-<button class="users-list__button" (click)="openDeleteDialog()" cartHover
-    matTooltip="Навсегда удалить пользователя">DELETE USER</button>
-<button class="users-list__button" (click)="openDialog()" cartHover matTooltip="Изменить данные пользователя">EDIT
-    USER</button>
+<button
+  class="users-list__button"
+  (click)="openDeleteDialog()"
+  cartHover
+  matTooltip="Навсегда удалить пользователя"
+>
+  DELETE USER
+</button>
+<button
+  class="users-list__button"
+  (click)="openDialog()"
+  cartHover
+  matTooltip="Изменить данные пользователя"
+>
+  EDIT USER
+</button>

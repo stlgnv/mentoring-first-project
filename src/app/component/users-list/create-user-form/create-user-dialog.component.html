@@ -1,55 +1,57 @@
 <div class="container">
-    <form class="user-form" [formGroup]="userForm">
-        <h1 class="user-form__title">CREATE USER FORM</h1>
+  <form class="user-form" [formGroup]="userForm">
+    <h1 class="user-form__title">CREATE USER FORM</h1>
 
-        <mat-form-field class="user-form__field">
-            <mat-label>NAME:</mat-label>
-            <input matInput type="text" formControlName="name" />
-            <mat-error>
-                Имя введено неправильно
-            </mat-error>
-        </mat-form-field>
+    <mat-form-field class="user-form__field">
+      <mat-label>NAME:</mat-label>
+      <input matInput type="text" formControlName="name" />
+      <mat-error>Имя введено неправильно</mat-error>
+    </mat-form-field>
 
-        <mat-form-field class="user-form__field">
-            <mat-label>EMAIL:</mat-label>
-            <input matInput type="text" formControlName="email" />
-            <mat-error>
-                Эмайл введен неправильно
-            </mat-error>
-        </mat-form-field>
+    <mat-form-field class="user-form__field">
+      <mat-label>EMAIL:</mat-label>
+      <input matInput type="text" formControlName="email" />
+      <mat-error>Эмайл введен неправильно</mat-error>
+    </mat-form-field>
 
-        <mat-form-field class="user-form__field">
-            <mat-label>PHONE:</mat-label>
-            <input matInput type="text" formControlName="phone" />
-            <mat-error>
-                Телефон введен неправильно
-            </mat-error>
-        </mat-form-field>
+    <mat-form-field class="user-form__field">
+      <mat-label>PHONE:</mat-label>
+      <input matInput type="text" formControlName="phone" />
+      <mat-error>Телефон введен неправильно</mat-error>
+    </mat-form-field>
 
-        <mat-form-field class="user-form__field">
-            <mat-label>WEBSITE:</mat-label>
-            <input matInput type="text" formControlName="website" />
-            <mat-error>
-                Вебсайт введен неправильно
-            </mat-error>
-        </mat-form-field>
+    <mat-form-field class="user-form__field">
+      <mat-label>WEBSITE:</mat-label>
+      <input matInput type="text" formControlName="website" />
+      <mat-error>Вебсайт введен неправильно</mat-error>
+    </mat-form-field>
 
-        <div formGroupName='company'>
-            <mat-form-field class="user-form__field">
-                <mat-label>COMPANY NAME:</mat-label>
-                <input matInput type="text" formControlName="name" />
-                <mat-error>
-                    Имя компаний введено неправильно
-                </mat-error>
-            </mat-form-field>
-        </div>
+    <div formGroupName="company">
+      <mat-form-field class="user-form__field">
+        <mat-label>COMPANY NAME:</mat-label>
+        <input matInput type="text" formControlName="name" />
+        <mat-error>Имя компаний введено неправильно</mat-error>
+      </mat-form-field>
+    </div>
 
-        <mat-dialog-actions align="end">
-            <button mat-dialog-close mat-raised-button matTooltip="Отмена создания пользователя">Cancel</button>
-            <button class="user-form__button" (click)="submitForm()" [disabled]="userForm.invalid" mat-raised-button
-                color="primary" matTooltip="Сохранить и создать пользователя">
-                CREATE USER
-            </button>
-        </mat-dialog-actions>
-    </form>
+    <mat-dialog-actions align="end">
+      <button
+        mat-dialog-close
+        mat-raised-button
+        matTooltip="Отмена создания пользователя"
+      >
+        Cancel
+      </button>
+      <button
+        class="user-form__button"
+        (click)="submitForm()"
+        [disabled]="userForm.invalid"
+        mat-raised-button
+        color="primary"
+        matTooltip="Сохранить и создать пользователя"
+      >
+        CREATE USER
+      </button>
+    </mat-dialog-actions>
+  </form>
 </div>

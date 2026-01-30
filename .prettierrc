@@ -1,5 +1,8 @@
 {
   "singleQuote": true,
-  "semi": true,
+  "printWidth": 80,
+  "tabWidth": 2,
+  "useTabs": false,
+  "htmlWhitespaceSensitivity": "ignore",
   "trailingComma": "all"
 }
