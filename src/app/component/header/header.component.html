@@ -8,15 +8,32 @@
         <a href="#" class="header__link" *ngIf="isShowCatalog">
           {{ headerItem3 }}
         </a>
+        <a href="#" class="header__link" routerLink="/users">Юзеры</a>
+        <a href="#" class="header__link" routerLink="/admin">Админка</a>
       </nav>
       <button type="button" (click)="changeMenuText()">изменить текст</button>
-      <button [routerLink]="['/users']">Пользователи</button>
       <button [routerLink]="['/todos']">todos</button>
     </div>
     <div class="header__actions">
       <a href="tel:+79650842929" class="header__phone">+7 (965) 084-29-29</a>
       <a href="" class="header__favorite"></a>
       <a href="#" class="header__cart" cartHover>Пусто</a>
+    </div>
+    <div>
+      <button
+        (click)="openDialog()"
+        class="button"
+        *ngIf="(userService.user$ | async) === null"
+      >
+        Войти
+      </button>
+      <button
+        (click)="logout()"
+        class="button"
+        *ngIf="(userService.user$ | async) !== null"
+      >
+        Выйти
+      </button>
     </div>
     <span class="header__date">
       {{ today | date: 'medium' }}

@@ -71,10 +71,8 @@ export class UsersListComponent {
   readonly dialog = inject(MatDialog);
   private snackBar = inject(MatSnackBar);
 
-  constructor() {
-    this.usersApiService.getUsers().subscribe((response: User[]) => {
-      this.usersService.setUsers(response);
-    });
+  ngOnInit() {
+    this.usersService.loadUsers();
   }
 
   public deleteUser(id: number) {
