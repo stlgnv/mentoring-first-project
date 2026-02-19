@@ -51,7 +51,6 @@ export class UserCardComponent {
     });
 
     dialogRef.afterClosed().subscribe((result: boolean | undefined) => {
-      console.log('The dialog was closed');
       if (result) {
         this.deleteUser.emit(this.user.id);
         this.snackBar.open('Пользователь удалён!', 'ok', {
@@ -71,7 +70,6 @@ export class UserCardComponent {
     });
 
     dialogRef.afterClosed().subscribe((editResult: User | undefined) => {
-      console.log('The dialog was closed, Value:', editResult);
       if (editResult) {
         this.editUser.emit(editResult);
         this.snackBar.open('Пользователь изменен!', 'ok', {

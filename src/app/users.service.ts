@@ -1,49 +1,48 @@
 import { inject, Injectable } from '@angular/core';
-import { IUser, User } from './component/users-list/users-list.component';
-import { BehaviorSubject } from 'rxjs';
+import { ICreateUser, User } from './component/users-list/users-list.component';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { UsersApiService } from './users-api.service';
 import { LocalStorageService } from './local-storage.service';
 
 @Injectable({ providedIn: 'root' })
 export class UsersService {
-  private userSubject$ = new BehaviorSubject<User[]>([]);
-  users$ = this.userSubject$.asObservable();
+  private readonly userSubject$ = new BehaviorSubject<User[]>([]);
+  users$: Observable<User[]> = this.userSubject$.asObservable();
   private localStorageKey = 'users';
   private usersApiService = inject(UsersApiService);
   private localStorageService = inject(LocalStorageService);
 
   loadUsers(): void {
-    const storedUsers = this.localStorageService.getUsersFromLocalStorage(
-      this.localStorageKey,
-    );
+    const storedUsers: User[] | null =
+      this.localStorageService.getItemFromLocalStorage(this.localStorageKey);
     storedUsers
       ? this.userSubject$.next(storedUsers)
       : this.usersApiService
           .getUsers()
-          .subscribe((data) => this.setUsers(data));
+          .subscribe((data: User[]) => this.setUsers(data));
   }
 
   setUsers(users: User[]): void {
     this.userSubject$.next(users);
-    this.localStorageService.saveUsersToLocalStorage(
+    this.localStorageService.saveItemToLocalStorage(
       this.localStorageKey,
       users,
     );
   }
 
   editUser(editedUser: User): void {
-    const updatedUsers = this.userSubject$.value.map((user) =>
+    const updatedUsers: User[] = this.userSubject$.value.map((user) =>
       user.id === editedUser.id ? editedUser : user,
     );
 
     this.userSubject$.next(updatedUsers);
-    this.localStorageService.saveUsersToLocalStorage(
+    this.localStorageService.saveItemToLocalStorage(
       this.localStorageKey,
       updatedUsers,
     );
   }
 
-  createUser(user: IUser): boolean {
+  createUser(user: ICreateUser): boolean {
     const existingUser = this.userSubject$.value.find(
       (currentElement) => currentElement.email === user.email,
     );
@@ -51,26 +50,29 @@ export class UsersService {
     if (existingUser) {
       return false;
     }
+    const newUser: User = {
+      ...user,
+      id: Date.now(),
+    };
 
-    const newUsers = [...this.userSubject$.value, user as User];
+    const newUsers: User[] = [...this.userSubject$.value, newUser];
 
     this.userSubject$.next(newUsers);
-    this.localStorageService.saveUsersToLocalStorage(
+    this.localStorageService.saveItemToLocalStorage(
       this.localStorageKey,
       newUsers,
     );
-    console.log('Saving users:', newUsers);
 
     return true;
   }
 
   deleteUser(id: number): void {
-    const filteredUsers = this.userSubject$.value.filter(
+    const filteredUsers: User[] = this.userSubject$.value.filter(
       (item: User) => item.id !== id,
     );
 
     this.userSubject$.next(filteredUsers);
-    this.localStorageService.saveUsersToLocalStorage(
+    this.localStorageService.saveItemToLocalStorage(
       this.localStorageKey,
       filteredUsers,
     );

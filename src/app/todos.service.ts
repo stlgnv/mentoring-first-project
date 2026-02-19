@@ -4,7 +4,7 @@ import { ICreateTodo, Todo } from './component/todos-list/todos-list.component';
 
 @Injectable({ providedIn: 'root' })
 export class TodosService {
-  private todoSubject$ = new BehaviorSubject<Todo[]>([]);
+  private readonly todoSubject$ = new BehaviorSubject<Todo[]>([]);
   todos$ = this.todoSubject$.asObservable();
 
   setTodos(todos: Todo[]): void {
@@ -28,7 +28,7 @@ export class TodosService {
   }
 
   createTodo(newTodo: ICreateTodo): boolean {
-    const exists = this.todoSubject$.value.some(
+    const exists: boolean = this.todoSubject$.value.some(
       (t) => t.title === newTodo.title && t.userId === newTodo.userId,
     );
 
