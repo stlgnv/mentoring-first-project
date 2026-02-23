@@ -50,7 +50,10 @@ export class EditTodoDialogComponent {
   readonly data = inject<{ todo: Todo }>(MAT_DIALOG_DATA);
 
   private getCompletedValue(): boolean {
-    const value = this.formTodo.get('completed')?.value!.trim().toLowerCase();
+    const value: string | undefined = this.formTodo
+      .get('completed')
+      ?.value!.trim()
+      .toLowerCase();
     if (value === 'да') return true;
     else return false;
   }

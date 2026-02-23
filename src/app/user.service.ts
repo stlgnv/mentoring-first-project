@@ -11,7 +11,8 @@ export interface CurrentUser {
   providedIn: 'root',
 })
 export class UserService {
-  private readonly userSubject$ = new BehaviorSubject<CurrentUser | null>(null);
+  private readonly userSubject$: BehaviorSubject<CurrentUser | null> =
+    new BehaviorSubject<CurrentUser | null>(null);
   public readonly user$ = this.userSubject$.asObservable();
 
   private user: CurrentUser = {

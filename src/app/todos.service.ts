@@ -4,8 +4,10 @@ import { ICreateTodo, Todo } from './component/todos-list/todos-list.component';
 
 @Injectable({ providedIn: 'root' })
 export class TodosService {
-  private readonly todoSubject$ = new BehaviorSubject<Todo[]>([]);
-  todos$ = this.todoSubject$.asObservable();
+  private readonly todoSubject$: BehaviorSubject<Todo[]> = new BehaviorSubject<
+    Todo[]
+  >([]);
+  public readonly todos$ = this.todoSubject$.asObservable();
 
   setTodos(todos: Todo[]): void {
     this.todoSubject$.next(todos.slice(0, 10));

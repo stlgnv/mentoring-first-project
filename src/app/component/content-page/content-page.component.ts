@@ -12,7 +12,7 @@ const newPages: number[] = [5, 4, 3, 2, 1];
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ContentPageComponent {
-  isShowImg = true;
+  isShowImg: boolean = true;
 
   readonly newPages: number[] = newPages;
 }

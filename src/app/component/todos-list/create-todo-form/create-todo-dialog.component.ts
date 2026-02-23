@@ -16,7 +16,7 @@ import { MatTooltip } from '@angular/material/tooltip';
 
 function completedValidator(): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
-    const value = control.value?.trim().toLowerCase();
+    const value: string | undefined = control.value?.trim().toLowerCase();
     if (value === 'да' || value === 'нет') {
       return null;
     }
@@ -49,7 +49,10 @@ export class CreateTodoDialogComponent {
   });
 
   private getCompletedValue(): boolean {
-    const value = this.todoForm.get('completed')?.value!.trim().toLowerCase();
+    const value: string | undefined = this.todoForm
+      .get('completed')
+      ?.value!.trim()
+      .toLowerCase();
     if (value === 'да') return true;
     else return false;
   }

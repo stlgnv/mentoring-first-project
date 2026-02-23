@@ -55,7 +55,7 @@ export class TodosListComponent {
     this.todosService.deleteTodo(id);
   }
 
-  editTodo(todo: any) {
+  editTodo(todo: Todo) {
     this.todosService.editTodo(todo);
   }
 
@@ -68,7 +68,7 @@ export class TodosListComponent {
         return;
       }
 
-      const isCreated = this.todosService.createTodo(newTodo);
+      const isCreated: boolean = this.todosService.createTodo(newTodo);
 
       if (isCreated) {
         this.snackBar.open('Задача добавлена', 'ok', { duration: 3000 });

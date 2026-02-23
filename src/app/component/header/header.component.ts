@@ -12,7 +12,7 @@ const getMenuItem = (name: string) => {
 
 const itemName: string = 'О компании';
 
-const vuzov = getMenuItem(itemName);
+const vuzov: string = getMenuItem(itemName);
 
 const menuItems: string[] = [
   'Каталог',
@@ -61,7 +61,7 @@ export class HeaderComponent {
 
   isUpperCase = true;
 
-  changeMenuText() {
+  changeMenuText(): void {
     this.menuItems = upperCaseMenuItems.map((item: string) =>
       this.isUpperCase ? item.toLowerCase() : item.toUpperCase(),
     );
