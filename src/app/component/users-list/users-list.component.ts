@@ -1,8 +1,6 @@
 import { AsyncPipe, NgFor } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { UserCardComponent } from './user-card/user-card.component';
-import { UsersApiService } from '../../users-api.service';
-import { UsersService } from '../../users.service';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
@@ -10,6 +8,9 @@ import { CreateUserDialogComponent } from './create-user-form/create-user-dialog
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { CartShadowDirective } from '../../directives/cart-shadow.directive';
 import { MatTooltip } from '@angular/material/tooltip';
+import { Store } from '@ngrx/store';
+import { UsersActions } from './store/user.actions';
+import { selectUsers } from './store/users.selectors';
 
 export interface User {
   id: number;
@@ -66,52 +67,89 @@ export interface IUser extends ICreateUser {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UsersListComponent {
-  readonly usersApiService = inject(UsersApiService);
-  readonly usersService = inject(UsersService);
   readonly dialog = inject(MatDialog);
   private snackBar = inject(MatSnackBar);
+  private readonly store = inject(Store);
+
+  public readonly users$ = this.store.select((state) => state.users.users);
 
   ngOnInit() {
-    this.usersService.loadUsers();
+    this.store.dispatch(UsersActions.load());
   }
 
   public deleteUser(id: number) {
-    this.usersService.deleteUser(id);
+    this.store.dispatch(UsersActions.delete({ id }));
   }
 
-  public editUser(formDialogValue: IUser) {
-    this.usersService.editUser({
-      ...formDialogValue,
-    });
+  public editUser(user: IUser) {
+    this.store.dispatch(UsersActions.edit({ user }));
   }
 
   public createUser(user: IUser): void {
-    const newUser: IUser = {
-      ...user,
-    };
-    this.usersService.createUser(newUser);
+    this.store.dispatch(UsersActions.create({ user }));
   }
 
   openCreateUserDialog(): void {
-    const dialogRef = this.dialog.open(CreateUserDialogComponent, {
-      data: {},
-    });
+    const dialogRef = this.dialog.open(CreateUserDialogComponent);
 
     dialogRef.afterClosed().subscribe((newUser: IUser | undefined) => {
       if (!newUser) {
         this.snackBar.open('Отмена добавления!', 'ok', { duration: 3000 });
         return;
       }
-      const isCreated = this.usersService.createUser(newUser);
-      if (isCreated) {
-        this.snackBar.open('Пользователь добавлен!', 'ok', {
-          duration: 3000,
-        });
-      } else {
-        this.snackBar.open('Такой email уже зарегистрирован', 'ok', {
-          duration: 3000,
-        });
-      }
+
+      this.store.dispatch(UsersActions.create({ user: newUser }));
+
+      this.snackBar.open('Пользователь добавлен!', 'ok', { duration: 3000 });
     });
   }
 }
+
+// ngOnInit() {
+//     this.usersService.loadUsers();
+//     this.store.dispatch(UsersActions.set({ users }));
+//   }
+
+//   public deleteUser(id: number) {
+//     this.usersService.deleteUser(id);
+//     this.store.dispatch(UsersActions.delete({ id }));
+//   }
+
+//   public editUser(user: IUser) {
+//     this.usersService.editUser({
+//       ...user,
+//     });
+//     this.store.dispatch(UsersActions.edit({ user }));
+//   }
+
+//   public createUser(user: IUser): void {
+//     const newUser: IUser = {
+//       ...user,
+//     };
+//     this.usersService.createUser(newUser);
+//     this.store.dispatch(UsersActions.create({ user }));
+//   }
+
+//   openCreateUserDialog(): void {
+//     const dialogRef = this.dialog.open(CreateUserDialogComponent, {
+//       data: {},
+//     });
+
+//     dialogRef.afterClosed().subscribe((newUser: IUser | undefined) => {
+//       if (!newUser) {
+//         this.snackBar.open('Отмена добавления!', 'ok', { duration: 3000 });
+//         return;
+//       }
+//       const isCreated = this.usersService.createUser(newUser);
+//       if (isCreated) {
+//         this.snackBar.open('Пользователь добавлен!', 'ok', {
+//           duration: 3000,
+//         });
+//       } else {
+//         this.snackBar.open('Такой email уже зарегистрирован', 'ok', {
+//           duration: 3000,
+//         });
+//       }
+//     });
+//   }
+// }
