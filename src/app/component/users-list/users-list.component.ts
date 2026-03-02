@@ -10,7 +10,6 @@ import { CartShadowDirective } from '../../directives/cart-shadow.directive';
 import { MatTooltip } from '@angular/material/tooltip';
 import { Store } from '@ngrx/store';
 import { UsersActions } from './store/user.actions';
-import { selectUsers } from './store/users.selectors';
 
 export interface User {
   id: number;
@@ -104,52 +103,3 @@ export class UsersListComponent {
     });
   }
 }
-
-// ngOnInit() {
-//     this.usersService.loadUsers();
-//     this.store.dispatch(UsersActions.set({ users }));
-//   }
-
-//   public deleteUser(id: number) {
-//     this.usersService.deleteUser(id);
-//     this.store.dispatch(UsersActions.delete({ id }));
-//   }
-
-//   public editUser(user: IUser) {
-//     this.usersService.editUser({
-//       ...user,
-//     });
-//     this.store.dispatch(UsersActions.edit({ user }));
-//   }
-
-//   public createUser(user: IUser): void {
-//     const newUser: IUser = {
-//       ...user,
-//     };
-//     this.usersService.createUser(newUser);
-//     this.store.dispatch(UsersActions.create({ user }));
-//   }
-
-//   openCreateUserDialog(): void {
-//     const dialogRef = this.dialog.open(CreateUserDialogComponent, {
-//       data: {},
-//     });
-
-//     dialogRef.afterClosed().subscribe((newUser: IUser | undefined) => {
-//       if (!newUser) {
-//         this.snackBar.open('Отмена добавления!', 'ok', { duration: 3000 });
-//         return;
-//       }
-//       const isCreated = this.usersService.createUser(newUser);
-//       if (isCreated) {
-//         this.snackBar.open('Пользователь добавлен!', 'ok', {
-//           duration: 3000,
-//         });
-//       } else {
-//         this.snackBar.open('Такой email уже зарегистрирован', 'ok', {
-//           duration: 3000,
-//         });
-//       }
-//     });
-//   }
-// }

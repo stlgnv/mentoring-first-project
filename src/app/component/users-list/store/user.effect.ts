@@ -1,19 +1,15 @@
-import { Injectable, inject } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { UsersActions } from './user.actions';
-import { switchMap, map, catchError, of } from 'rxjs';
 import { UsersApiService } from '../../../users-api.service';
+import { inject } from '@angular/core';
+import { catchError, map, of, switchMap } from 'rxjs';
+import { UsersActions } from './user.actions';
 
-@Injectable()
-export class UsersEffects {
-  private actions$ = inject(Actions);
-  private usersApiService = inject(UsersApiService);
-
-  loadUsers$ = createEffect(() =>
-    this.actions$.pipe(
+export const loadUsers$ = createEffect(
+  (actions$ = inject(Actions), usersApiService = inject(UsersApiService)) =>
+    actions$.pipe(
       ofType(UsersActions.load),
       switchMap(() =>
-        this.usersApiService.getUsers().pipe(
+        usersApiService.getUsers().pipe(
           map((users) => UsersActions.loadSuccess({ users })),
           catchError(() =>
             of(UsersActions.loadFailure({ error: 'Ошибка загрузки' })),
@@ -21,5 +17,5 @@ export class UsersEffects {
         ),
       ),
     ),
-  );
-}
+  { functional: true },
+);

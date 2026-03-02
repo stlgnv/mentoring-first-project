@@ -9,7 +9,9 @@ import { provideStore } from '@ngrx/store';
 import { userReducer } from './component/users-list/store/user.reducer';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { provideEffects } from '@ngrx/effects';
-import { UsersEffects } from './component/users-list/store/user.effect';
+import { loadUsers$ } from './component/users-list/store/user.effect';
+import { loadTodos$ } from './component/todos-list/store/todo.effect';
+import { todoReducer } from './component/todos-list/store/todo.reducer';
 
 registerLocaleData(localeRu);
 
@@ -21,8 +23,9 @@ export const appConfig: ApplicationConfig = {
     { provide: LOCALE_ID, useValue: 'ru-RU' },
     provideStore({
       users: userReducer,
+      todos: todoReducer,
     }),
-    provideEffects([UsersEffects]),
+    provideEffects({ loadUsers$, loadTodos$ }),
     provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() }),
   ],
 };
