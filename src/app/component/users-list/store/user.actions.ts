@@ -1,5 +1,5 @@
 import { createActionGroup, emptyProps, props } from '@ngrx/store';
-import { User } from '../users-list.component';
+import { IUser, User } from '../users-list.component';
 
 export const UsersActions = createActionGroup({
   source: 'Users',
@@ -9,7 +9,7 @@ export const UsersActions = createActionGroup({
     loadFailure: props<{ error: string }>(),
 
     edit: props<{ user: User }>(),
-    create: props<{ user: User }>(),
+    create: props<{ user: IUser }>(),
     delete: props<{ id: number }>(),
   },
 });

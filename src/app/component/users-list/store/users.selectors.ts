@@ -1,11 +1,11 @@
 import { createSelector } from '@ngrx/store';
 import { User } from '../users-list.component';
 
-interface UserState {
+export interface UserState {
   users: User[];
 }
 
-interface AppState {
+export interface AppState {
   users: UserState;
 }
 export const selectUsersFeature = (state: AppState) => state.users;

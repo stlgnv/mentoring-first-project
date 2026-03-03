@@ -46,7 +46,11 @@ export class TodoCardComponent {
   }
 
   openDialog(): void {
-    const dialofRef = this.dialog.open(EditTodoDialogComponent, {
+    const dialofRef = this.dialog.open<
+      EditTodoDialogComponent,
+      { todo: Todo },
+      Todo
+    >(EditTodoDialogComponent, {
       data: { todo: this.todo },
     });
 
@@ -66,13 +70,16 @@ export class TodoCardComponent {
   }
 
   public openDeleteDialog(): void {
-    const dialogRef = this.dialog.open(DeleteTodoDialogComponent, {
+    const dialogRef = this.dialog.open<
+      DeleteTodoDialogComponent,
+      { todo: Todo },
+      Boolean
+    >(DeleteTodoDialogComponent, {
       width: '600px',
       data: { todo: this.todo },
     });
 
-    dialogRef.afterClosed().subscribe((result: boolean | undefined) => {
-      console.log('The dialog was closed');
+    dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         this.deleteTodo.emit(this.todo.id);
         this.snackBar.open('Задача удалена!', 'ok', {

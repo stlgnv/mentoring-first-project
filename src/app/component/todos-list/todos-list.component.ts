@@ -10,6 +10,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTooltip } from '@angular/material/tooltip';
 import { Store } from '@ngrx/store';
 import { TodosActions } from './store/todo.actions';
+import { Observable } from 'rxjs';
+import { TodosAppState } from './store/todos.selectors';
 
 export interface Todo {
   userId: number;
@@ -44,8 +46,10 @@ export class TodosListComponent {
   readonly todosApiService = inject(TodosApiService);
   readonly dialog = inject(MatDialog);
   private snackBar = inject(MatSnackBar);
-  private readonly store = inject(Store);
-  public readonly todos$ = this.store.select((state) => state.todos.todos);
+  private readonly store = inject(Store<TodosAppState>);
+  public readonly todos$: Observable<Todo[]> = this.store.select(
+    (state) => state.todos.todos,
+  );
 
   ngOnInit() {
     this.store.dispatch(TodosActions.load());
@@ -60,7 +64,11 @@ export class TodosListComponent {
   }
 
   openCreateTodosDialog(): void {
-    const dialogRef = this.dialog.open(CreateTodoDialogComponent);
+    const dialogRef = this.dialog.open<
+      CreateTodoDialogComponent,
+      undefined,
+      Todo
+    >(CreateTodoDialogComponent);
 
     dialogRef.afterClosed().subscribe((newTodo: Todo | undefined) => {
       if (!newTodo) {

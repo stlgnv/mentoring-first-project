@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 export interface CurrentUser {
   name: string;
@@ -11,8 +11,10 @@ export interface CurrentUser {
   providedIn: 'root',
 })
 export class UserService {
-  private readonly userSubject$ = new BehaviorSubject<CurrentUser | null>(null);
-  public readonly user$ = this.userSubject$.asObservable();
+  private readonly userSubject$: BehaviorSubject<CurrentUser | null> =
+    new BehaviorSubject<CurrentUser | null>(null);
+  public readonly user$: Observable<CurrentUser | null> =
+    this.userSubject$.asObservable();
 
   private user: CurrentUser = {
     name: 'Ильнур',
@@ -20,19 +22,19 @@ export class UserService {
     isAdmin: null,
   };
 
-  loginAsAdmin() {
+  loginAsAdmin(): void {
     this.userSubject$.next({ ...this.user, isAdmin: true });
   }
 
-  loginAsUser() {
+  loginAsUser(): void {
     this.userSubject$.next({ ...this.user, isAdmin: false });
   }
 
-  get isAdmin() {
-    return this.userSubject$.value?.isAdmin;
+  get isAdmin(): boolean {
+    return !!this.userSubject$.value?.isAdmin;
   }
 
-  logout() {
+  logout(): void {
     this.userSubject$.next(null);
   }
 }

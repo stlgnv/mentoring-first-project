@@ -45,13 +45,16 @@ export class UserCardComponent {
   private snackBar = inject(MatSnackBar);
 
   public openDeleteDialog(): void {
-    const dialogRef = this.dialog.open(DeleteUserDialogComponent, {
+    const dialogRef = this.dialog.open<
+      DeleteUserDialogComponent,
+      { user: User },
+      User
+    >(DeleteUserDialogComponent, {
       width: '600px',
       data: { user: this.user },
     });
 
-    dialogRef.afterClosed().subscribe((result: boolean | undefined) => {
-      console.log('The dialog was closed');
+    dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         this.deleteUser.emit(this.user.id);
         this.snackBar.open('Пользователь удалён!', 'ok', {
@@ -66,12 +69,15 @@ export class UserCardComponent {
   }
 
   public openDialog(): void {
-    const dialogRef = this.dialog.open(EditUserDialogComponent, {
+    const dialogRef = this.dialog.open<
+      EditUserDialogComponent,
+      { user: User },
+      User
+    >(EditUserDialogComponent, {
       data: { user: this.user },
     });
 
     dialogRef.afterClosed().subscribe((editResult: User | undefined) => {
-      console.log('The dialog was closed, Value:', editResult);
       if (editResult) {
         this.editUser.emit(editResult);
         this.snackBar.open('Пользователь изменен!', 'ok', {

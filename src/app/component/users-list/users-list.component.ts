@@ -10,6 +10,8 @@ import { CartShadowDirective } from '../../directives/cart-shadow.directive';
 import { MatTooltip } from '@angular/material/tooltip';
 import { Store } from '@ngrx/store';
 import { UsersActions } from './store/user.actions';
+import { AppState } from './store/users.selectors';
+import { Observable } from 'rxjs';
 
 export interface User {
   id: number;
@@ -68,19 +70,21 @@ export interface IUser extends ICreateUser {
 export class UsersListComponent {
   readonly dialog = inject(MatDialog);
   private snackBar = inject(MatSnackBar);
-  private readonly store = inject(Store);
+  private readonly store = inject(Store<AppState>);
 
-  public readonly users$ = this.store.select((state) => state.users.users);
+  public readonly users$: Observable<IUser[]> = this.store.select(
+    (state) => state.users.users,
+  );
 
   ngOnInit() {
     this.store.dispatch(UsersActions.load());
   }
 
-  public deleteUser(id: number) {
+  public deleteUser(id: number): void {
     this.store.dispatch(UsersActions.delete({ id }));
   }
 
-  public editUser(user: IUser) {
+  public editUser(user: IUser): void {
     this.store.dispatch(UsersActions.edit({ user }));
   }
 
@@ -89,7 +93,11 @@ export class UsersListComponent {
   }
 
   openCreateUserDialog(): void {
-    const dialogRef = this.dialog.open(CreateUserDialogComponent);
+    const dialogRef = this.dialog.open<
+      CreateUserDialogComponent,
+      undefined,
+      IUser
+    >(CreateUserDialogComponent);
 
     dialogRef.afterClosed().subscribe((newUser: IUser | undefined) => {
       if (!newUser) {

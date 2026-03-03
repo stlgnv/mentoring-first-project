@@ -13,7 +13,7 @@ const initialState: TodosState = {
   loading: false,
 };
 
-export const todoReducer = createReducer(
+export const todoReducer = createReducer<TodosState>(
   initialState,
 
   on(TodosActions.load, (state) => ({
@@ -33,22 +33,16 @@ export const todoReducer = createReducer(
     loading: false,
     error,
   })),
-  on(TodosActions.edit, (state, { todo }) => ({
+  on(TodosActions.edit, (state, { todo: Todo }) => ({
     ...state,
-    todos: state.todos.map((u) => {
-      if (u.id === todo.id) {
-        return todo;
-      } else {
-        return u;
-      }
-    }),
+    todos: state.todos.map((t) => (t.id === Todo.id ? Todo : t)),
   })),
-  on(TodosActions.create, (state, payload) => ({
+  on(TodosActions.create, (state, { todo }) => ({
     ...state,
-    todos: [...state.todos, payload.todo],
+    todos: [...state.todos, todo],
   })),
-  on(TodosActions.delete, (state, payload) => ({
+  on(TodosActions.delete, (state, { id }) => ({
     ...state,
-    todos: state.todos.filter((todo) => todo.id !== payload.id),
+    todos: state.todos.filter((todo) => todo.id !== id),
   })),
 );
